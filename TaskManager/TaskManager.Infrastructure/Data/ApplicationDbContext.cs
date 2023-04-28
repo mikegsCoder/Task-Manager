@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TaskManager.Infrastructure.Data.Configuration;
 using TaskManager.Infrastructure.Data.Models.DataBaseModels;
 
 namespace TaskManager.Infrastructure.Data
@@ -23,6 +24,12 @@ namespace TaskManager.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new CategoryConfiguration());
+            builder.ApplyConfiguration(new StatusConfiguration());
+            builder.ApplyConfiguration(new RemarkConfiguration());
+            builder.ApplyConfiguration(new UserTaskConfiguration());
+
             base.OnModelCreating(builder);
         }
     }
