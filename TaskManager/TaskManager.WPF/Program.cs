@@ -19,6 +19,14 @@ namespace TaskManager.WPF
                 })
                 .Build();
 
+            // migrate Database on startup:
+            using (var scope = host.Services.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+                dbContext.Database.Migrate();
+            }
+
             var app = host.Services.GetService<App>();
 
             app?.Run();
