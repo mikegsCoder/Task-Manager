@@ -80,7 +80,116 @@
                     </MenuItem>
                 </Menu>
             </StackPanel>
-          
+
+            <StackPanel Orientation="Horizontal" 
+                HorizontalAlignment="Right" 
+                x:Name="HelloPanel"
+                Margin="10,0,0,0"
+                Visibility="{Binding Path=HasUser, Converter={StaticResource BoolToVisibility}}">
+                <TextBlock x:Name="HelloText" 
+                    Width="340" 
+                    HorizontalAlignment="Right"
+                    Padding="10"
+                    TextAlignment="Center"
+                    FontSize="18"
+                    Margin="0,-3,0,0"
+                    Visibility="{Binding Path=HasUser, Converter={StaticResource BoolToVisibility}}"/>
+
+                <Button Width="30" BorderThickness="0" Click="LogoutBtn_Click">
+                    <Image x:Name="LogoutImage" 
+                        Height="26" 
+                        Width="26" 
+                        Opacity="0.7"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        MouseEnter="LogoutMouse_Enter"
+                        MouseLeave="LogoutMouse_Leave">
+                        <Image.Source>
+                            <FormatConvertedBitmap Source="/Images/logout.jpg" />
+                        </Image.Source>
+                    </Image>
+                </Button>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" 
+                HorizontalAlignment="Right" 
+                Name="AuthPanel"
+                Margin="30,0,0,0"
+                Visibility="{Binding Path=ShowLoginBtn, Converter={StaticResource BoolToVisibility}}">
+                <TextBlock x:Name="Title" 
+                    Height="35" 
+                    Width="500" 
+                    Margin="0,-5,0,0" 
+                    FontSize="20" 
+                    FontWeight="Normal"
+                    Padding="5" 
+                    TextAlignment="Center"
+                    Text="Welcome to Task Manager">
+
+                    <TextBlock.Foreground>
+                        <SolidColorBrush x:Name="MySolidColorBrush" Color="DarkBlue" />
+                    </TextBlock.Foreground>
+
+                    <TextBlock.Triggers>
+                        <EventTrigger RoutedEvent="TextBlock.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <!-- Animates the text block's color. -->
+                                    <ColorAnimation 
+                                        Storyboard.TargetName="MySolidColorBrush"
+                                        Storyboard.TargetProperty="Color"
+                                        From="Green" To="DarkViolet" Duration="0:0:2"
+                                        AutoReverse="True" RepeatBehavior="Forever" />
+
+                                    <!-- Animates the text block's FontWeight. -->
+                                    <ObjectAnimationUsingKeyFrames 
+                                        Storyboard.TargetProperty="(TextElement.FontWeight)" 
+                                        Storyboard.TargetName="Title" 
+                                        AutoReverse="True"
+                                        RepeatBehavior="Forever">
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00.00">
+                                            <DiscreteObjectKeyFrame.Value>
+                                                <FontWeight>Normal</FontWeight>
+                                            </DiscreteObjectKeyFrame.Value>
+                                        </DiscreteObjectKeyFrame>
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00.15">
+                                            <DiscreteObjectKeyFrame.Value>
+                                                <FontWeight>SemiBold</FontWeight>
+                                            </DiscreteObjectKeyFrame.Value>
+                                        </DiscreteObjectKeyFrame>
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:0.30">
+                                            <DiscreteObjectKeyFrame.Value>
+                                                <FontWeight>DemiBold</FontWeight>
+                                            </DiscreteObjectKeyFrame.Value>
+                                        </DiscreteObjectKeyFrame>
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:0.45">
+                                            <DiscreteObjectKeyFrame.Value>
+                                                <FontWeight>Bold</FontWeight>
+                                            </DiscreteObjectKeyFrame.Value>
+                                        </DiscreteObjectKeyFrame>
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00.60">
+                                            <DiscreteObjectKeyFrame.Value>
+                                                <FontWeight>ExtraBold</FontWeight>
+                                            </DiscreteObjectKeyFrame.Value>
+                                        </DiscreteObjectKeyFrame>
+                                        <DiscreteObjectKeyFrame KeyTime="00:00:00.75">
+                                            <DiscreteObjectKeyFrame.Value>
+                                                <FontWeight>UltraBold</FontWeight>
+                                            </DiscreteObjectKeyFrame.Value>
+                                        </DiscreteObjectKeyFrame>
+                                    </ObjectAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </TextBlock.Triggers>
+                </TextBlock>
+
+                <Button Content="Register" Foreground="DarkGreen" BorderBrush="DarkGreen" Click="RegisterBtn_Click" />
+
+                <Button Content="Login" Foreground="DarkBlue" BorderBrush="DarkBlue" Click="LoginBtn_Click" />
+            </StackPanel>
+        </StackPanel>
+
         </StackPanel>
 
     </Grid>
