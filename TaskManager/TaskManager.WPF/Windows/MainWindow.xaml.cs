@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TaskManager.WPF.DataContexts;
 
 namespace TaskManager.WPF
 {
@@ -21,9 +22,16 @@ namespace TaskManager.WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
-        { 
+
+        public MainWindowContext context;
+
+        public MainWindow(MainWindowContext _context)
+        {
+            context = _context;
+
             InitializeComponent();
+
+            DataContext = context;
         }
     }
 }
