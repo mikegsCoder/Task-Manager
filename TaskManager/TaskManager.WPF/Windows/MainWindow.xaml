@@ -48,6 +48,40 @@
             <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
         </Grid.Resources>
 
+        <StackPanel 
+            Grid.Row="0" 
+            Name="Header"
+            Orientation="Horizontal"
+            Background="LightGray"
+            Height="40">
+
+            <StackPanel 
+                Orientation="Horizontal" 
+                HorizontalAlignment="Left"
+                Visibility="{Binding Path=HasUser, Converter={StaticResource BoolToVisibility}}">
+
+                <Button Content="All Tasks" Foreground="SaddleBrown" BorderBrush="SaddleBrown" Click="AllTasksBtn_Click" />
+
+                <Menu>
+                    <MenuItem Header="📑 By Category" BorderBrush="#707070" BorderThickness="2" Background="#DDDDDD">
+                        <MenuItem Header="Personal" Click="PersonalCategory_Click" />
+                        <MenuItem Header="Job" Click="JobCategory_Click" />
+                        <MenuItem Header="Family" Click="FamilyCategory_Click" />
+                        <MenuItem Header="Other" Click="OtherCategory_Click" />
+                    </MenuItem>
+                </Menu>
+
+                <Menu>
+                    <MenuItem Header="📑 By Status" BorderBrush="#707070" BorderThickness="2" Background="#DDDDDD">
+                        <MenuItem Header="Awaiting" Click="AwaitingStatus_Click" />
+                        <MenuItem Header="In Progress" Click="InProgressStatus_Click" />
+                        <MenuItem Header="Finished" Click="FinishedStatus_Click" />
+                        <MenuItem Header="Canceled" Click="CanceledStatus_Click" />
+                    </MenuItem>
+                </Menu>
+            </StackPanel>
+          
+        </StackPanel>
 
     </Grid>
 </Window>
