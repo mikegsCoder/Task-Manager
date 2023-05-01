@@ -113,7 +113,7 @@
 
             <StackPanel Orientation="Horizontal" 
                 HorizontalAlignment="Right" 
-                Name="AuthPanel"
+                x:Name="AuthPanel"
                 Margin="30,0,0,0"
                 Visibility="{Binding Path=ShowLoginBtn, Converter={StaticResource BoolToVisibility}}">
                 <TextBlock x:Name="Title" 
@@ -190,7 +190,12 @@
             </StackPanel>
         </StackPanel>
 
-        </StackPanel>
+        <Image Grid.Row="1" x:Name="MainImage" Grid.RowSpan="2" 
+            Visibility="{Binding Path=ShowLoginBtn, Converter={StaticResource BoolToVisibility}}">
+            <Image.Source>
+                <FormatConvertedBitmap Source="/Images/Task-Manager.jpg" />
+            </Image.Source>
+        </Image>
 
     </Grid>
 </Window>
