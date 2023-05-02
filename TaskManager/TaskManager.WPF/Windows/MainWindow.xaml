@@ -218,5 +218,16 @@
             </ListView.View>
         </ListView>
 
+        <Label
+            x:Name="NoTasksLabel"
+            Grid.Row="1"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            FontSize="30"
+            Foreground="OrangeRed"
+            Visibility="{Binding Path=NoTasks, Converter={StaticResource BoolToVisibility}}">
+            No tasks with this search criteria in database.
+        </Label>
+
     </Grid>
 </Window>
