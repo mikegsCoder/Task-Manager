@@ -197,5 +197,26 @@
             </Image.Source>
         </Image>
 
+        <ListView 
+            Grid.Row="1" 
+            x:Name="TasksListView" 
+            SelectionMode="Single"
+            ScrollViewer.VerticalScrollBarVisibility="Visible"
+            Visibility="{Binding Path=HasUser, Converter={StaticResource BoolToVisibility}}"
+            ItemsSource="{Binding Path=tasks}" >
+
+            <ListView.View>
+                <GridView x:Name="TaskGridView">
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="0">Id</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Category}" Width="65">Category</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Status}" Width="80">Status</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Description}" Width="387">Description</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=CreatedOn}" Width="80">Cteated On</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=IsFinished}" Width="68">Is Finished</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=FinishedOn}" Width="78">Finished On</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
     </Grid>
 </Window>
