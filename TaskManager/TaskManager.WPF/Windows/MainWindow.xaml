@@ -229,5 +229,28 @@
             No tasks with this search criteria in database.
         </Label>
 
+        <StackPanel 
+            Grid.Row="2" 
+            x:Name="Footer"
+            Orientation="Horizontal"
+            Background="LightGray"
+            HorizontalAlignment="Stretch"
+            Height="40"
+            Visibility="{Binding Path=HasUser, Converter={StaticResource BoolToVisibility}}">
+            <Button Content="Add" Foreground="DarkGreen" BorderBrush="DarkGreen" Margin="110,0,10,0" Click="AddBtn_Click" />
+
+            <Button Content="Edit" Foreground="DarkBlue" BorderBrush="DarkBlue" Click="EditBtn_Click" />
+
+            <Button Content="Remarks" Foreground="Black" BorderBrush="Black" Click="RemarksBtn_Click" />
+
+            <Button Content="Delete" Foreground="DarkRed" BorderBrush="DarkRed" Click="DelBtn_Click" />
+
+            <Menu>
+                <MenuItem Header="💾 Export Tasks" BorderBrush="#707070" BorderThickness="2" Background="#DDDDDD">
+                    <MenuItem Header="JSON" Click="ExportJson_Click" />
+                    <MenuItem Header="XML" Click="ExportXml_Click" />
+                </MenuItem>
+            </Menu>
+        </StackPanel>
     </Grid>
 </Window>
