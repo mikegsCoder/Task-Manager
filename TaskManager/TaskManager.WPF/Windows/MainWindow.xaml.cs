@@ -33,5 +33,106 @@ namespace TaskManager.WPF
 
             DataContext = context;
         }
+
+        private void AllTasksBtn_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        // By Category
+        private void PersonalCategory_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+        private void JobCategory_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+        private void FamilyCategory_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+        private void OtherCategory_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        // By Status:
+        private void AwaitingStatus_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+        private void InProgressStatus_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+        private void FinishedStatus_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+        private void CanceledStatus_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void RegisterBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private async void LoginBtn_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private async void AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+          
+        }
+
+        private async void EditBtn_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        private void RemarksBtn_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        private async void DelBtn_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        private void ExportJson_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ExportXml_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LogoutMouse_Enter(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        private void LogoutMouse_Leave(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        private void LogoutBtn_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        private void SelectedTask(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }
