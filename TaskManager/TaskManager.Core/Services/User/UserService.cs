@@ -21,6 +21,20 @@ namespace TaskManager.Core.Services.UserService
             return !await db.Users.AnyAsync(x => x.Username == username);
         }
 
+        public async void CreateAsync(string username, string password, string firstName, string lastName)
+        {
+            var user = new User
+            {
+                Username = username,
+                PasswordHash = ComputeHash(password),
+                FirstName = firstName,
+                LastName = lastName
+            };
+
+            await db.Users.AddAsync(user);
+            await db.SaveChangesAsync();
+        }
+
         private string ComputeHash(string password)
         {
             var bytes = Encoding.UTF8.GetBytes(password);
