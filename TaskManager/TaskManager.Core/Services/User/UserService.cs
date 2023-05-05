@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 
 using TaskManager.Infrastructure.Data;
 using TaskManager.Infrastructure.Data.Models.DataBaseModels;
+using TaskManager.Core.ViewModels.User;
 
 namespace TaskManager.Core.Services.UserService
 {
@@ -33,6 +34,26 @@ namespace TaskManager.Core.Services.UserService
 
             await db.Users.AddAsync(user);
             await db.SaveChangesAsync();
+        }
+
+        public async Task<UserViewModel> GetUserAsync(string username, string password)
+        {
+            var hashPassword = ComputeHash(password);
+
+            var user = await db.Users.FirstOrDefaultAsync(x => x.Username == username && x.PasswordHash == hashPassword);
+
+            if (user != null)
+            {
+                return new UserViewModel
+                {
+                    Id = user.Id,
+                    Username = user.Username,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName
+                };
+            }
+
+            return null;
         }
 
         private string ComputeHash(string password)
