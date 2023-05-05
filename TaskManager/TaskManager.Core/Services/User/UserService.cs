@@ -16,6 +16,11 @@ namespace TaskManager.Core.Services.UserService
             db = _db;
         }
 
+        public async Task<bool> IsUsernameAvailableAsync(string username)
+        {
+            return !await db.Users.AnyAsync(x => x.Username == username);
+        }
+
         private string ComputeHash(string password)
         {
             var bytes = Encoding.UTF8.GetBytes(password);
