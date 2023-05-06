@@ -13,6 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TaskManager.Core.Constants;
+using TaskManager.Core.Services.UserService;
+using TaskManager.WPF.Controllers;
 using TaskManager.WPF.DataContexts;
 
 namespace TaskManager.WPF
@@ -22,12 +25,21 @@ namespace TaskManager.WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly IUserService userService;
+
+        public UserController userController;
 
         public MainWindowContext context;
 
-        public MainWindow(MainWindowContext _context)
+        public MainWindow(
+            IUserService _userService, 
+            MainWindowContext _context)
         {
+            userService = _userService;
+
             context = _context;
+
+            userController = new UserController(userService, context);
 
             InitializeComponent();
 
@@ -82,7 +94,18 @@ namespace TaskManager.WPF
 
         private async void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            
+            await userController.LoginAsync();
+
+            if (context.user != null)
+            {
+                HelloText.Text = string.Format(
+                    Messages.Main_Window_Tello_Text,
+                    context.user.Username);
+            }
+            else
+            {
+                HelloText.Text = string.Empty;
+            }
         }
 
         private async void AddBtn_Click(object sender, RoutedEventArgs e)
