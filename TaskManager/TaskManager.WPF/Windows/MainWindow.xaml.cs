@@ -89,7 +89,7 @@ namespace TaskManager.WPF
 
         private void RegisterBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            userController.RegisterAsync();
         }
 
         private async void LoginBtn_Click(object sender, RoutedEventArgs e)
