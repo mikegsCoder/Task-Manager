@@ -159,7 +159,6 @@ namespace TaskManager.WPF.Controllers
 
         public void Logout()
         {
-            //ShowGreeting("See you later!", $"See you {context.user.Username}");
             ShowGreeting
                 (Messages.Logout_Text_Msg,
                 string.Format(Messages.Logout_Title_Msg, context.user.Username));
