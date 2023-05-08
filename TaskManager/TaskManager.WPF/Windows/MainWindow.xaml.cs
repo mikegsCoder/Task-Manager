@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TaskManager.Core.Constants;
 using TaskManager.Core.Services.UserService;
+using TaskManager.Core.ViewModels.Task;
 using TaskManager.WPF.Controllers;
 using TaskManager.WPF.DataContexts;
 
@@ -25,6 +26,8 @@ namespace TaskManager.WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private TaskViewModel selectedTask;
+
         private readonly IUserService userService;
 
         public UserController userController;
@@ -150,7 +153,13 @@ namespace TaskManager.WPF
 
         private void LogoutBtn_Click(object sender, RoutedEventArgs e)
         {
-           
+            userController.Logout();
+
+            HelloText.Text = string.Empty;
+
+            TasksListView.Items.Clear();
+
+            selectedTask = null;
         }
 
         private void SelectedTask(object sender, RoutedEventArgs e)
