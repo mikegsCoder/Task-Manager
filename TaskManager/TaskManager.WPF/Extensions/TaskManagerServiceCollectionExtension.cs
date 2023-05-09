@@ -3,6 +3,7 @@ using TaskManager.Infrastructure.Data;
 using TaskManager.WPF.Controllers;
 using TaskManager.Core.Services.UserService;
 using TaskManager.WPF.DataContexts;
+using TaskManager.Core.Services.Task;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -16,6 +17,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<MainWindowContext>();
             services.AddDbContext<ApplicationDbContext>();
             services.AddScoped(typeof(IUserService), typeof(UserService));
+            services.AddScoped(typeof(ITaskService), typeof(TaskService));
 
             return services;
         }
