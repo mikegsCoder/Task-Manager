@@ -143,7 +143,11 @@ namespace TaskManager.WPF
 
         private void LogoutMouse_Enter(object sender, RoutedEventArgs e)
         {
-           
+            var logoutImage = LogoutImage as Image;
+
+            logoutImage.Opacity = 1;
+            logoutImage.Width = 28;
+            logoutImage.Height = 28;
         }
 
         private void LogoutMouse_Leave(object sender, RoutedEventArgs e)
