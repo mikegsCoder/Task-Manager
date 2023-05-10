@@ -60,7 +60,10 @@ namespace TaskManager.WPF
 
         private void AllTasksBtn_Click(object sender, RoutedEventArgs e)
         {
-           
+            categorySelector = null;
+            statusSelector = null;
+
+            UpdateTaskList();
         }
 
         // By Category
