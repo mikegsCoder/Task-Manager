@@ -27,7 +27,61 @@ namespace TaskManager.Core.Services.Task
 
         public async Task<List<TaskViewModel>> GetTasksAsync(string userId, string categorySelector, string statusSelector)
         {
-            return new List<TaskViewModel>();
+            List<TaskViewModel> tasks;
+
+            if (categorySelector == null && statusSelector == null)
+            {
+                tasks = await db.Tasks
+                    .Where(x => x.UserId == userId && !x.IsDeleted)
+                    .OrderBy(x => x.CreatedOn)
+                    .Select(x => new TaskViewModel
+                    {
+                        Id = x.Id,
+                        Status = x.Status.Name != "InProgress" ? x.Status.Name : "In Progress",
+                        Category = x.Category.Name,
+                        Description = x.Description,
+                        CreatedOn = x.CreatedOn.ToString("dd/MM/yyyy"),
+                        IsFinished = x.IsFinished,
+                        FinishedOn = x.FinishedOn == null ? "" : x.FinishedOn.GetValueOrDefault().ToString("dd/MM/yyyy")
+                    })
+                    .ToListAsync();
+            }
+            else if (categorySelector != null)
+            {
+                tasks = await db.Tasks
+                    .Where(x => x.UserId == userId && !x.IsDeleted && x.Category.Name == categorySelector)
+                    .OrderBy(x => x.CreatedOn)
+                    .Select(x => new TaskViewModel
+                    {
+                        Id = x.Id,
+                        Status = x.Status.Name != "InProgress" ? x.Status.Name : "In Progress",
+                        Category = x.Category.Name,
+                        Description = x.Description,
+                        CreatedOn = x.CreatedOn.ToString("dd/MM/yyyy"),
+                        IsFinished = x.IsFinished,
+                        FinishedOn = x.FinishedOn == null ? "" : x.FinishedOn.GetValueOrDefault().ToString("dd/MM/yyyy")
+                    })
+                    .ToListAsync();
+            }
+            else
+            {
+                tasks = await db.Tasks
+                    .Where(x => x.UserId == userId && !x.IsDeleted && x.Status.Name == statusSelector)
+                    .OrderBy(x => x.CreatedOn)
+                    .Select(x => new TaskViewModel
+                    {
+                        Id = x.Id,
+                        Status = x.Status.Name != "InProgress" ? x.Status.Name : "In Progress",
+                        Category = x.Category.Name,
+                        Description = x.Description,
+                        CreatedOn = x.CreatedOn.ToString("dd/MM/yyyy"),
+                        IsFinished = x.IsFinished,
+                        FinishedOn = x.FinishedOn == null ? "" : x.FinishedOn.GetValueOrDefault().ToString("dd/MM/yyyy")
+                    })
+                    .ToListAsync();
+            }
+
+            return tasks;
         }
     }
 }
