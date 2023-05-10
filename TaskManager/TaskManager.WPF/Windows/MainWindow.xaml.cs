@@ -210,15 +210,6 @@ namespace TaskManager.WPF
             selectedTask = null;
 
             context.NoTasks = context.tasks.Count == 0 ? true : false;
-
-            //if (context.tasks.Count == 0)
-            //{
-            //    context.NoTasks = true;
-            //}
-            //else
-            //{
-            //    context.NoTasks = false;
-            //}
         }
     }
 }
