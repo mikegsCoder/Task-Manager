@@ -120,7 +120,10 @@ namespace TaskManager.WPF
         }
         private void CanceledStatus_Click(object sender, RoutedEventArgs e)
         {
-            
+            categorySelector = null;
+            statusSelector = "Canceled";
+
+            UpdateTaskList();
         }
 
         private void RegisterBtn_Click(object sender, RoutedEventArgs e)
