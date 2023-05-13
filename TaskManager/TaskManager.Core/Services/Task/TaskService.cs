@@ -25,6 +25,35 @@ namespace TaskManager.Core.Services.Task
             db = _db;
         }
 
+        public async Task<bool> CreateTaskAsync(string userId, string description, string category)
+        {
+            var user = await db.Users
+                .Where(x => x.Id == userId)
+                .FirstOrDefaultAsync();
+
+            var taskCategory = await db.Categories
+                .Where(x => x.Name == category)
+                .FirstOrDefaultAsync();
+
+            var status = await db.Statuses
+                .Where(x => x.Name == "Awaiting")
+                .FirstOrDefaultAsync();
+
+            var task = new UserTask
+            {
+                User = user,
+                Category = taskCategory,
+                Status = status,
+                Description = description,
+                CreatedOn = DateTime.Now
+            };
+
+            db.Tasks.Add(task);
+            await db.SaveChangesAsync();
+
+            return true;
+        }
+
         public async Task<List<TaskViewModel>> GetTasksAsync(string userId, string categorySelector, string statusSelector)
         {
             List<TaskViewModel> tasks;
