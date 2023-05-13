@@ -149,7 +149,12 @@ namespace TaskManager.WPF
 
         private async void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-          
+            await taskController.CreateTaskAsync();
+
+            categorySelector = null;
+            statusSelector = null;
+
+            UpdateTaskList();
         }
 
         private async void EditBtn_Click(object sender, RoutedEventArgs e)
