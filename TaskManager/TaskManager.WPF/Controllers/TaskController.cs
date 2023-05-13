@@ -80,7 +80,6 @@ namespace TaskManager.WPF.Controllers
                 || description.Length < 5
                 || description.Length > 75)
             {
-                //ShowInvalidInput("Task description should be between 5 and 75 characters long.");
                 ShowInvalidInput(string.Format(
                     Messages.Task_Description_Error_Msg,
                     ValidationConstants.UserTask_Description_MinLength,

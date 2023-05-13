@@ -17,5 +17,9 @@ namespace TaskManager.Core.Constants
         public const int User_Username_MaxLength = 15;
         public const int User_Password_MinLength = 6;
         public const int User_Password_MaxLength = 10;
+
+        // UserTask:
+        public const int UserTask_Description_MinLength = 5;
+        public const int UserTask_Description_MaxLength = 75;
     }
 }
