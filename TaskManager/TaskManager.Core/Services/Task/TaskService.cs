@@ -112,5 +112,41 @@ namespace TaskManager.Core.Services.Task
 
             return tasks;
         }
+
+        public async Task<bool> EditTaskAsync(string taskId, string description, string category, string status)
+        {
+            var task = await db.Tasks
+               .Where(x => x.Id == taskId)
+               .FirstOrDefaultAsync();
+
+            var taskCategory = await db.Categories
+               .Where(x => x.Name == category)
+               .FirstOrDefaultAsync();
+
+            var taskStatus = await db.Statuses
+                .Where(x => x.Name == status)
+                .FirstOrDefaultAsync();
+
+            task.Description = description;
+            task.Category = taskCategory;
+            task.Status = taskStatus;
+            task.ModifiedOn = DateTime.Now;
+
+            if (status == "Finished")
+            {
+                task.FinishedOn = DateTime.Now;
+                task.IsFinished = true;
+            }
+            else
+            {
+                task.FinishedOn = null;
+                task.IsFinished = false;
+            }
+
+            db.Update(task);
+            await db.SaveChangesAsync();
+
+            return true;
+        }
     }
 }
