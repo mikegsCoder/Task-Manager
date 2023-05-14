@@ -159,7 +159,14 @@ namespace TaskManager.WPF
 
         private async void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-           
+            if (selectedTask == null)
+            {
+                return;
+            }
+
+            await taskController.EditTaskAsync(selectedTask);
+
+            UpdateTaskList();
         }
 
         private void RemarksBtn_Click(object sender, RoutedEventArgs e)
