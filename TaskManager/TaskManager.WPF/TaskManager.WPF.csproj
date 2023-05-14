@@ -13,6 +13,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Remove="Windows\Task\TaskEditWindow.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Windows\Task\TaskEditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
