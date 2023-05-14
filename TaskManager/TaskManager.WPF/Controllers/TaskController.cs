@@ -74,6 +74,34 @@ namespace TaskManager.WPF.Controllers
             }
         }
 
+        public async Task EditTaskAsync(TaskViewModel task)
+        {
+            TaskEditWindow taskEditWindow = new TaskEditWindow(task);
+
+            if (taskEditWindow.ShowDialog() == false)
+            {
+                return;
+            }
+
+            string description = taskEditWindow.TaskDescription.Text.Trim();
+            string category = taskEditWindow.category;
+            string status = taskEditWindow.status.Replace(" ", "");
+
+            if (!ValidateDescription(description))
+            {
+                return;
+            }
+
+            try
+            {
+                await taskService.EditTaskAsync(task.Id, description, category, status);
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex.Message);
+            }
+        }
+
         private bool ValidateDescription(string description)
         {
             if (string.IsNullOrEmpty(description)
