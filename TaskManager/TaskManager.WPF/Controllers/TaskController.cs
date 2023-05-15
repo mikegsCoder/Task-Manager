@@ -102,6 +102,25 @@ namespace TaskManager.WPF.Controllers
             }
         }
 
+        public async Task DeleteTaskAsync(TaskViewModel task)
+        {
+            TaskDeleteWindow taskDeleteWindow = new TaskDeleteWindow(task);
+
+            if (taskDeleteWindow.ShowDialog() == false)
+            {
+                return;
+            }
+
+            try
+            {
+                await taskService.DeleteTaskAsync(task.Id);
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex.Message);
+            }
+        }
+
         private bool ValidateDescription(string description)
         {
             if (string.IsNullOrEmpty(description)
