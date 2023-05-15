@@ -148,5 +148,29 @@ namespace TaskManager.Core.Services.Task
 
             return true;
         }
+
+        public async Task<bool> DeleteTaskAsync(string taskId)
+        {
+            var task = await db.Tasks
+               .Where(x => x.Id == taskId)
+               .Include(x => x.Remarks)
+               .FirstOrDefaultAsync();
+
+            foreach (var remark in task.Remarks)
+            {
+                remark.DeletedOn = DateTime.Now;
+                remark.IsDeleted = true;
+            }
+
+            db.Remarks.UpdateRange(task.Remarks);
+
+            task.DeletedOn = DateTime.Now;
+            task.IsDeleted = true;
+
+            db.Tasks.Update(task);
+            await db.SaveChangesAsync();
+
+            return true;
+        }
     }
 }
