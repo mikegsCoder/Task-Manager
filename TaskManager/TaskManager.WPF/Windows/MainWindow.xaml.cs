@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TaskManager.Core.Constants;
+using TaskManager.Core.Services.RemarkService;
 using TaskManager.Core.Services.Task;
 using TaskManager.Core.Services.UserService;
 using TaskManager.Core.ViewModels.Task;
@@ -34,24 +35,29 @@ namespace TaskManager.WPF
 
         private readonly IUserService userService;
         private readonly ITaskService taskService;
+        private readonly IRemarkService remarkService;
 
         public UserController userController;
         public TaskController taskController;
+        public RemarkController remarkController;
 
         public MainWindowContext context;
 
         public MainWindow(
             IUserService _userService,
             ITaskService _taskService,
+            IRemarkService _remarkService,
             MainWindowContext _context)
         {
             userService = _userService;
             taskService = _taskService;
+            remarkService = _remarkService;
 
             context = _context;
 
-            userController = new UserController(userService, context);
+            remarkController = new RemarkController(remarkService);
             taskController = new TaskController(taskService, context);
+            userController = new UserController(userService, context);
 
             InitializeComponent();
 
