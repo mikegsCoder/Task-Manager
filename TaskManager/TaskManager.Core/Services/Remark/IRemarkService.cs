@@ -11,5 +11,7 @@ namespace TaskManager.Core.Services.RemarkService
     public interface IRemarkService
     {
         Task<List<RemarkViewModel>> GetRemarksAsync(string taskId);
+
+        Task<bool> CreateRemarkAsync(string taskId, string content);
     }
 }

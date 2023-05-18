@@ -22,6 +22,21 @@ namespace TaskManager.Core.Services.RemarkService
             db = _db;
         }
 
+        public async Task<bool> CreateRemarkAsync(string taskId, string content)
+        {
+            Remark remark = new Remark
+            {
+                Content = content,
+                UserTaskId = taskId,
+                CreatedOn = DateTime.Now
+            };
+
+            await db.Remarks.AddAsync(remark);
+            await db.SaveChangesAsync();
+
+            return true;
+        }
+
         public async Task<List<RemarkViewModel>> GetRemarksAsync(string taskId)
         {
             var remarks = await db.Remarks
