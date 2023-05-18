@@ -30,6 +30,9 @@ namespace TaskManager.Core.Constants
         // TaskController:
         public const string Task_Description_Error_Msg = "Task description should be between {0} and {1} characters long.";
 
+        // RemarkController:
+        public const string Remark_Description_Error_Msg = "Remark description should be between {0} and {1} characters long.";
+        
         // MainWindow:
         public const string Main_Window_Tello_Text = "Hello {0}!";
     }

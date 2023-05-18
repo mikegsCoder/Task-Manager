@@ -21,5 +21,9 @@ namespace TaskManager.Core.Constants
         // UserTask:
         public const int UserTask_Description_MinLength = 5;
         public const int UserTask_Description_MaxLength = 75;
+
+        // Reamrk:
+        public const int Remark_Content_MinLength = 5;
+        public const int Remark_Content_MaxLength = 75;
     }
 }

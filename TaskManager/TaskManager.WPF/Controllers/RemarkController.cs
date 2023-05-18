@@ -43,7 +43,6 @@ namespace TaskManager.WPF.Controllers
                 || content.Length < 5
                 || content.Length > 75)
             {
-                //ShowInvalidInput("Remark content should be between 5 and 75 characters long.");
                 ShowInvalidInput(string.Format(
                     Messages.Remark_Description_Error_Msg,
                     ValidationConstants.Remark_Content_MinLength,
