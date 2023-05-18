@@ -30,8 +30,4 @@
     <Resource Include="Images\Task-Manager.jpg" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Windows\Remark\" />
-  </ItemGroup>
-
 </Project>
