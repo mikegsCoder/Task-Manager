@@ -39,6 +39,8 @@ namespace TaskManager.WPF
             remarkController = _remarkController;
 
             TaskDescription.Text = "Remarks for task: " + task.Description;
+
+            UpdateRemarksList();
         }
 
         private async void AddBtn_Click(object sender, RoutedEventArgs e)
@@ -61,6 +63,48 @@ namespace TaskManager.WPF
             var selectedItem = sender as ListViewItem;
 
             selectedRemark = selectedItem.Content as RemarkViewModel;
+        }
+
+        private async void UpdateRemarksList()
+        {
+            var updated = await remarkController.GetRemarksAsync(task.Id);
+
+            if (updated == null)
+            {
+                return;
+            }
+
+            remarks = updated;
+
+            var remarksListView = RemarksListView as ListView;
+
+            remarksListView.Items.Clear();
+
+            if (remarksListView == null)
+            {
+                return;
+            }
+
+            foreach (var remark in remarks)
+            {
+                var item = new ListViewItem { Content = remark };
+                item.Selected += SelectedRemark;
+
+                remarksListView.Items.Add(item);
+            }
+
+            selectedRemark = null;
+
+            var remarksLabel = NoRemarksLabel as Label;
+
+            if (remarks != null && remarks.Count == 0)
+            {
+                remarksLabel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                remarksLabel.Visibility = Visibility.Hidden;
+            }
         }
     }
 }
