@@ -53,5 +53,20 @@ namespace TaskManager.Core.Services.RemarkService
                
             return remarks;
         }
+
+        public async Task<bool> EditRemarkAsync(string remarkId, string content)
+        {
+            var remark = await db.Remarks
+                .Where(x => x.Id == remarkId)
+                .FirstOrDefaultAsync();
+
+            remark.Content = content;
+            remark.ModifiedOn = DateTime.Now;
+
+            db.Update(remark);
+            await db.SaveChangesAsync();
+
+            return true;
+        }
     }
 }
