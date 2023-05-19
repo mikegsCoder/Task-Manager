@@ -45,7 +45,9 @@ namespace TaskManager.WPF
 
         private async void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-          
+            await remarkController.CreateRemarkAsync(task);
+
+            UpdateRemarksList();
         }
 
         private async void EditBtn_Click(object sender, RoutedEventArgs e)
