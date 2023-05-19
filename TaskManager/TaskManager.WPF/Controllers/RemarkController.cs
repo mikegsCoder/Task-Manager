@@ -10,6 +10,7 @@ using TaskManager.Core.Services.RemarkService;
 using TaskManager.Core.Services.Task;
 using TaskManager.Core.ViewModels.Remark;
 using TaskManager.Core.ViewModels.Task;
+using TaskManager.WPF.Windows.Remark;
 using static TaskManager.WPF.Windows.MessageBoxes.MessageBoxes;
 
 namespace TaskManager.WPF.Controllers
@@ -34,6 +35,32 @@ namespace TaskManager.WPF.Controllers
                 ShowError(ex.Message);
 
                 return null;
+            }
+        }
+
+        public async Task CreateRemarkAsync(TaskViewModel task)
+        {
+            RemarkAddWindow remarkAddWindow = new RemarkAddWindow(task);
+
+            if (remarkAddWindow.ShowDialog() == false)
+            {
+                return;
+            }
+
+            string content = remarkAddWindow.RemarkContent.Text.Trim();
+
+            if (!ValidateContent(content))
+            {
+                return;
+            }
+
+            try
+            {
+                await remarkService.CreateRemarkAsync(task.Id, content);
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex.Message);
             }
         }
 
