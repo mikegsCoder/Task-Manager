@@ -64,6 +64,32 @@ namespace TaskManager.WPF.Controllers
             }
         }
 
+        public async Task EditRemarkAsync(RemarkViewModel remark, TaskViewModel task)
+        {
+            RemarkEditWindow remarkEditWindow = new RemarkEditWindow(remark, task);
+
+            if (remarkEditWindow.ShowDialog() == false)
+            {
+                return;
+            }
+
+            string content = remarkEditWindow.RemarkContent.Text.Trim();
+
+            if (!ValidateContent(content))
+            {
+                return;
+            }
+
+            try
+            {
+                await remarkService.EditRemarkAsync(remark.Id, content);
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex.Message);
+            }
+        }
+
         private bool ValidateContent(string content)
         {
             if (string.IsNullOrEmpty(content)
