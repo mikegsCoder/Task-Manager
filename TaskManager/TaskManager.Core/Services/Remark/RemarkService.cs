@@ -68,5 +68,20 @@ namespace TaskManager.Core.Services.RemarkService
 
             return true;
         }
+
+        public async Task<bool> DeleteRemarkAsync(string remarkId)
+        {
+            var remark = await db.Remarks
+                .Where(x => x.Id == remarkId)
+                .FirstOrDefaultAsync();
+
+            remark.DeletedOn = DateTime.Now;
+            remark.IsDeleted = true;
+
+            db.Remarks.Update(remark);
+            await db.SaveChangesAsync();
+
+            return true;
+        }
     }
 }
