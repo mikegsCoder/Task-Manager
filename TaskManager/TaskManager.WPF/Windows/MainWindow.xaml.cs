@@ -113,7 +113,7 @@ namespace TaskManager.WPF
         private void InProgressStatus_Click(object sender, RoutedEventArgs e)
         {
             categorySelector = null;
-            statusSelector = "In Progress";
+            statusSelector = "InProgress";
 
             UpdateTaskList();
         }
