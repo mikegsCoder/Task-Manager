@@ -90,6 +90,25 @@ namespace TaskManager.WPF.Controllers
             }
         }
 
+        public async Task DeleteRemarkAsync(RemarkViewModel remark, TaskViewModel task)
+        {
+            RemarkDeleteWindow remarkDeleteWindow = new RemarkDeleteWindow(remark, task);
+
+            if (remarkDeleteWindow.ShowDialog() == false)
+            {
+                return;
+            }
+
+            try
+            {
+                await remarkService.DeleteRemarkAsync(remark.Id);
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex.Message);
+            }
+        }
+
         private bool ValidateContent(string content)
         {
             if (string.IsNullOrEmpty(content)
