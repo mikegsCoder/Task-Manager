@@ -64,7 +64,14 @@ namespace TaskManager.WPF
 
         private async void DelBtn_Click(object sender, RoutedEventArgs e)
         {
-          
+            if (selectedRemark == null)
+            {
+                return;
+            }
+
+            await remarkController.DeleteRemarkAsync(selectedRemark, task);
+
+            UpdateRemarksList();
         }
 
         private void SelectedRemark(object sender, RoutedEventArgs e)
