@@ -39,6 +39,27 @@ namespace TaskManager.WPF.Controllers
             context = _context;
         }
 
+        public void ExportTasks(string format)
+        {
+            var dialog = new CommonOpenFileDialog();
+            dialog.IsFolderPicker = true;
+            CommonFileDialogResult result = dialog.ShowDialog();
+
+            string path = dialog.FileName;
+
+            try
+            {
+                fileService.ExportTasksAsync(context.user.Id, path, format);
+
+                //ShowSuccess($"Your tasks successfully exported in {path}\\Tasks.{format}");
+                ShowSuccess(string.Format(Messages.Task_Export_Success_Msg, path, format));
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex.Message);
+            }
+        }
+
         public async Task GetTasksAsync(string categorySelector, string statusSelector)
         {
             try
