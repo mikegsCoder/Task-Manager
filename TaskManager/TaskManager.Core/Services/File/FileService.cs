@@ -27,6 +27,8 @@ namespace TaskManager.Core.Services.File
             var tasksData = GetTasksData(userId);
 
             var result = SerializeData(tasksData, format);
+
+            await System.IO.File.WriteAllTextAsync(path + "/Tasks." + format, result);
         }
 
         private TaskDto[] GetTasksData(string userId)
