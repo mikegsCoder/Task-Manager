@@ -26,6 +26,7 @@ namespace TaskManager.Core.Services.File
         {
             var tasksData = GetTasksData(userId);
 
+            var result = SerializeData(tasksData, format);
         }
 
         private TaskDto[] GetTasksData(string userId)
@@ -57,6 +58,26 @@ namespace TaskManager.Core.Services.File
                 .ToArray();
 
             return tasks;
+        }
+
+        private string SerializeData(TaskDto[] tasksData, string format)
+        {
+            string result;
+
+            if (format == "json")
+            {
+                result = JsonConvert.SerializeObject(tasksData, Newtonsoft.Json.Formatting.Indented);
+            }
+            else
+            {
+                var sb = new StringBuilder();
+
+                var serializer = new XmlSerializer(typeof(TaskDto[]), new XmlRootAttribute("Tasks"));
+                serializer.Serialize(new StringWriter(sb), tasksData, new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty }));
+                result = sb.ToString();
+            }
+
+            return result;
         }
     }
 }
