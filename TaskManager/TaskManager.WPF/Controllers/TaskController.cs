@@ -51,7 +51,6 @@ namespace TaskManager.WPF.Controllers
             {
                 fileService.ExportTasksAsync(context.user.Id, path, format);
 
-                //ShowSuccess($"Your tasks successfully exported in {path}\\Tasks.{format}");
                 ShowSuccess(string.Format(Messages.Task_Export_Success_Msg, path, format));
             }
             catch (Exception ex)

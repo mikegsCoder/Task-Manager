@@ -29,6 +29,7 @@ namespace TaskManager.Core.Constants
 
         // TaskController:
         public const string Task_Description_Error_Msg = "Task description should be between {0} and {1} characters long.";
+        public const string Task_Export_Success_Msg = "Your tasks successfully exported in {0}\\Tasks.{1}";
 
         // RemarkController:
         public const string Remark_Description_Error_Msg = "Remark description should be between {0} and {1} characters long.";
