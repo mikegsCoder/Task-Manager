@@ -1,7 +1,6 @@
 ﻿using System.Text;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
-
 using TaskManager.Infrastructure.Data;
 using TaskManager.Infrastructure.Data.Models.DataBaseModels;
 using TaskManager.Core.ViewModels.User;
