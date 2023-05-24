@@ -1,6 +1,6 @@
 # Task-Manager
 
-:dart:  My project for the Windows Presentation Foundation course. This is a Desktop application where you can register, login and manage your tasks. Each task has category, status and collection of remarks.
+:dart:  My project for the [Windows Presentation Foundation](https://github.com/mikegsCoder/Self-Education/tree/main/WPF) course. This is a desktop application where you can register, login and manage your own tasks. Each task has category, status and collection of remarks.
 
 ## :arrow_forward: Getting Started:
 
@@ -33,7 +33,7 @@
   - Export his own tasks in JSON or XML format;
 - Some more features:
   - Implemented Error handling;
-  - Implemented Data validation;
+  - Implemented Data validation.
 
 ## 🧪 Test Accounts
 &nbsp;&nbsp;&nbsp;&nbsp;Username: **peter123**  
