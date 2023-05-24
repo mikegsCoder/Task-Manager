@@ -13,7 +13,7 @@ namespace TaskManager.WPF.Windows.Remark
         private TaskViewModel task;
 
         public RemarkEditWindow(
-        RemarkViewModel _remark,
+            RemarkViewModel _remark,
             TaskViewModel _task)
         {
             InitializeComponent();
