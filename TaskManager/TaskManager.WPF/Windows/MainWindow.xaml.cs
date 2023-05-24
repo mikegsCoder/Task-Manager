@@ -205,12 +205,12 @@ namespace TaskManager.WPF
 
         private void ExportJson_Click(object sender, RoutedEventArgs e)
         {
-
+            taskController.ExportTasks("json");
         }
 
         private void ExportXml_Click(object sender, RoutedEventArgs e)
         {
-
+            taskController.ExportTasks("xml");
         }
 
         private void LogoutMouse_Enter(object sender, RoutedEventArgs e)
