@@ -14,8 +14,4 @@
     <ProjectReference Include="..\TaskManager.Infrastructure\TaskManager.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\User\" />
-  </ItemGroup>
-
 </Project>
