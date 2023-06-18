@@ -2,6 +2,7 @@
 using TaskManager.WPF.DataContexts;
 using MongoDB.Driver;
 using TaskManager.Core.Services.UserService;
+using TaskManager.WPF.Controllers;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -11,6 +12,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.AddScoped<App>();
             services.AddScoped<MainWindow>();
+            services.AddScoped<UserController>();
             services.AddScoped<MainWindowContext>();
             services.AddSingleton(typeof(IMongoClient), new MongoClient("mongodb://localhost:27017"));
             services.AddScoped(typeof(IUserService), typeof(UserService));
