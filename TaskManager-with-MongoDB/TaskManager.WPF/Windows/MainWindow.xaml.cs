@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TaskManager.Core.Services.UserService;
+using TaskManager.Core.ViewModels.Task;
+using TaskManager.WPF.Controllers;
 using TaskManager.WPF.DataContexts;
 
 namespace TaskManager.WPF
@@ -24,11 +27,23 @@ namespace TaskManager.WPF
         private string categorySelector;
         private string statusSelector;
 
+        private TaskViewModel selectedTask;
+
+        private readonly IUserService userService;
+
+        public UserController userController;
+
         public MainWindowContext context;
 
-        public MainWindow( MainWindowContext _context)
+        public MainWindow(
+            IUserService _userService, 
+            MainWindowContext _context)
         {
+            userService = _userService;
+
             context = _context;
+
+            userController = new UserController(userService, context);
 
             InitializeComponent();
 
