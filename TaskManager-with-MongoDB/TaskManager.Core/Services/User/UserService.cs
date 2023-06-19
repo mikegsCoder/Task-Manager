@@ -27,6 +27,19 @@ namespace TaskManager.Core.Services.UserService
             return await userCollection.Find(x => x.Username == username).FirstOrDefaultAsync() == null;
         }
 
+        public async void CreateAsync(string username, string password, string firstName, string lastName)
+        {
+            var user = new User
+            {
+                Username = username,
+                PasswordHash = ComputeHash(password),
+                FirstName = firstName,
+                LastName = lastName
+            };
+
+            await userCollection.InsertOneAsync(user);
+        }
+
         private string ComputeHash(string password)
         {
             var bytes = Encoding.UTF8.GetBytes(password);
