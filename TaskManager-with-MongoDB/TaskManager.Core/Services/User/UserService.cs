@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using MongoDB.Driver;
 using TaskManager.Core.Constants;
 using TaskManager.Infrastructure.Data.Models.DataBaseModels;
+using TaskManager.Core.ViewModels.User;
 
 namespace TaskManager.Core.Services.UserService
 {
@@ -38,6 +39,28 @@ namespace TaskManager.Core.Services.UserService
             };
 
             await userCollection.InsertOneAsync(user);
+        }
+
+        public async Task<UserViewModel> GetUserAsync(string username, string password)
+        {
+            var hashPassword = ComputeHash(password);
+
+            var user = await userCollection
+                .Find(x => x.Username == username && x.PasswordHash == hashPassword)
+                .FirstOrDefaultAsync();
+
+            if (user != null)
+            {
+                return new UserViewModel
+                {
+                    Id = user.Id.ToString(),
+                    Username = user.Username,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName
+                };
+            }
+
+            return null;
         }
 
         private string ComputeHash(string password)
