@@ -18,5 +18,10 @@ namespace TaskManager.Core.Constants
         public const string Input_Error_Msg = "Invalid Input!";
         public const string Username_NotAvailable_Error_Msg = "Username is not available.";
         public const string Registration_Success_Msg = "Successful registration.";
+        // UserController Login:
+        public const string Login_Input_Error_Msg = "Both fields are required.";
+        public const string Login_Data_Error_Msg = "Invalid Username or Password.";
+        public const string Login_Welcome_Title_Msg = "Welcome again!";
+        public const string Login_Welcome_Text_Msg = "Welcome {0} {1}.";
     }
 }
