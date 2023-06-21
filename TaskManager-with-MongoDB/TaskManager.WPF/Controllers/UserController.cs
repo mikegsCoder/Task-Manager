@@ -110,5 +110,56 @@ namespace TaskManager.WPF.Controllers
                 ShowError(ex.Message);
             }
         }
+
+        public async Task LoginAsync()
+        {
+            LoginWindow loginWindow = new LoginWindow();
+
+            if (loginWindow.ShowDialog() == false)
+            {
+                return;
+            }
+
+            string username = loginWindow.Username.Text.Trim();
+            string password = loginWindow.Password.Password.Trim();
+
+            if (string.IsNullOrEmpty(username)
+                || string.IsNullOrEmpty(password))
+            {
+                //ShowInvalidInput("Both fields are required.");
+                ShowInvalidInput(Messages.Login_Input_Error_Msg);
+
+                return;
+            }
+
+            try
+            {
+                context.user = await userService.GetUserAsync(username, password);
+
+                if (context.user == null)
+                {
+                    //ShowInvalidInput("Invalid Username or Password.");
+                    ShowInvalidInput(Messages.Login_Data_Error_Msg);
+                }
+                else
+                {
+                    context.HasUser = true;
+                    context.ShowLoginBtn = false;
+
+                    //ShowGreeting(
+                    //    $"Welcome {context.user.FirstName} {context.user.LastName}.",
+                    //    "Welcome again!");
+                    ShowGreeting(
+                        string.Format(Messages.Login_Welcome_Text_Msg,
+                            context.user.FirstName,
+                            context.user.LastName),
+                        Messages.Login_Welcome_Title_Msg);
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex.Message);
+            }
+        }
     }
 }
