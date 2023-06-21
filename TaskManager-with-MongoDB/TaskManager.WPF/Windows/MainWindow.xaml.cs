@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TaskManager.Core.Constants;
 using TaskManager.Core.Services.UserService;
 using TaskManager.Core.ViewModels.Task;
 using TaskManager.WPF.Controllers;
@@ -98,7 +99,18 @@ namespace TaskManager.WPF
 
         private async void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-           
+            await userController.LoginAsync();
+
+            if (context.user != null)
+            {
+                HelloText.Text = string.Format(
+                    Messages.Main_Window_Hello_Text,
+                    context.user.Username);
+            }
+            else
+            {
+                HelloText.Text = string.Empty;
+            }
         }
 
         private async void AddBtn_Click(object sender, RoutedEventArgs e)

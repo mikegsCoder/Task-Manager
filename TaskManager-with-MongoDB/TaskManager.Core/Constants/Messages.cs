@@ -23,5 +23,8 @@ namespace TaskManager.Core.Constants
         public const string Login_Data_Error_Msg = "Invalid Username or Password.";
         public const string Login_Welcome_Title_Msg = "Welcome again!";
         public const string Login_Welcome_Text_Msg = "Welcome {0} {1}.";
+
+        // MainWindow:
+        public const string Main_Window_Hello_Text = "Hello {0}!";
     }
 }
