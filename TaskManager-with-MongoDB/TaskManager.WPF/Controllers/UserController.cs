@@ -126,7 +126,6 @@ namespace TaskManager.WPF.Controllers
             if (string.IsNullOrEmpty(username)
                 || string.IsNullOrEmpty(password))
             {
-                //ShowInvalidInput("Both fields are required.");
                 ShowInvalidInput(Messages.Login_Input_Error_Msg);
 
                 return;
@@ -138,7 +137,6 @@ namespace TaskManager.WPF.Controllers
 
                 if (context.user == null)
                 {
-                    //ShowInvalidInput("Invalid Username or Password.");
                     ShowInvalidInput(Messages.Login_Data_Error_Msg);
                 }
                 else
@@ -146,13 +144,9 @@ namespace TaskManager.WPF.Controllers
                     context.HasUser = true;
                     context.ShowLoginBtn = false;
 
-                    //ShowGreeting(
-                    //    $"Welcome {context.user.FirstName} {context.user.LastName}.",
-                    //    "Welcome again!");
-                    ShowGreeting(
-                        string.Format(Messages.Login_Welcome_Text_Msg,
-                            context.user.FirstName,
-                            context.user.LastName),
+                    ShowGreeting(string.Format(Messages.Login_Welcome_Text_Msg,
+                        context.user.FirstName,
+                        context.user.LastName),
                         Messages.Login_Welcome_Title_Msg);
                 }
             }
