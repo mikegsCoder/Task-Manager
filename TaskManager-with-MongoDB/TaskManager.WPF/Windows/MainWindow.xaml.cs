@@ -163,7 +163,13 @@ namespace TaskManager.WPF
 
         private void LogoutBtn_Click(object sender, RoutedEventArgs e)
         {
-           
+            userController.Logout();
+
+            HelloText.Text = string.Empty;
+
+            TasksListView.Items.Clear();
+
+            selectedTask = null;
         }
 
         private void SelectedTask(object sender, RoutedEventArgs e)
