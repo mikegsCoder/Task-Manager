@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TaskManager.Core.Constants;
+using TaskManager.Core.Services.Task;
 using TaskManager.Core.Services.UserService;
 using TaskManager.Core.ViewModels.Task;
 using TaskManager.WPF.Controllers;
@@ -31,16 +32,19 @@ namespace TaskManager.WPF
         private TaskViewModel selectedTask;
 
         private readonly IUserService userService;
+        private readonly ITaskService taskService;
 
         public UserController userController;
 
         public MainWindowContext context;
 
         public MainWindow(
-            IUserService _userService, 
+            IUserService _userService,
+            ITaskService _taskService,
             MainWindowContext _context)
         {
             userService = _userService;
+            taskService = _taskService;
 
             context = _context;
 
