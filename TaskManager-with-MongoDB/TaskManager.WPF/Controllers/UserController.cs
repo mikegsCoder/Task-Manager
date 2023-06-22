@@ -155,5 +155,18 @@ namespace TaskManager.WPF.Controllers
                 ShowError(ex.Message);
             }
         }
+
+        public void Logout()
+        {
+            ShowGreeting(Messages.Logout_Text_Msg,
+                string.Format(Messages.Logout_Title_Msg, context.user.Username));
+
+            context.user = null;
+            context.tasks = null;
+
+            context.HasUser = false;
+            context.ShowLoginBtn = true;
+            context.NoTasks = false;
+        }
     }
 }
