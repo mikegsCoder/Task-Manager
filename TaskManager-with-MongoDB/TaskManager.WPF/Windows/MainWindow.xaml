@@ -50,7 +50,7 @@
 
         <StackPanel 
             Grid.Row="0" 
-            Name="Header"
+            x:Name="Header"
             Orientation="Horizontal"
             Background="LightGray"
             Height="40">
@@ -113,7 +113,7 @@
 
             <StackPanel Orientation="Horizontal" 
                 HorizontalAlignment="Right" 
-                Name="AuthPanel"
+                x:Name="AuthPanel"
                 Margin="30,0,0,0"
                 Visibility="{Binding Path=ShowLoginBtn, Converter={StaticResource BoolToVisibility}}">
                 <TextBlock x:Name="Title" 
@@ -231,7 +231,7 @@
 
         <StackPanel 
             Grid.Row="2" 
-            Name="Footer"
+            x:Name="Footer"
             Orientation="Horizontal"
             Background="LightGray"
             HorizontalAlignment="Stretch"
