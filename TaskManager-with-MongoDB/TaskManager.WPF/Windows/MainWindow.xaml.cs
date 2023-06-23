@@ -35,6 +35,7 @@ namespace TaskManager.WPF
         private readonly ITaskService taskService;
 
         public UserController userController;
+        public TaskController taskController;
 
         public MainWindowContext context;
 
@@ -49,6 +50,7 @@ namespace TaskManager.WPF
             context = _context;
 
             userController = new UserController(userService, context);
+            taskController = new TaskController(taskService, context);
 
             InitializeComponent();
 
