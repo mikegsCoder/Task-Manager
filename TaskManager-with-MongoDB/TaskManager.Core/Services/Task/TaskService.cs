@@ -143,5 +143,30 @@ namespace TaskManager.Core.Services.Task
         {
             return DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
         }
+
+        private void GetStatusAndCategory(TaskViewModel task)
+        {
+            if (task.Status.StartsWith("_"))
+            {
+                string statusId = task.Status.Substring(1);
+                task.Status = statusCollection
+                    .Find(x => x.Id.ToString() == statusId)
+                    .FirstOrDefaultAsync()
+                    .GetAwaiter()
+                    .GetResult()
+                    .Name;
+            }
+
+            if (task.Category.StartsWith("_"))
+            {
+                string categoryId = task.Category.Substring(1);
+                task.Category = categoryCollection
+                    .Find(x => x.Id.ToString() == categoryId)
+                    .FirstOrDefaultAsync()
+                    .GetAwaiter()
+                    .GetResult()
+                    .Name;
+            }
+        }
     }
 }
