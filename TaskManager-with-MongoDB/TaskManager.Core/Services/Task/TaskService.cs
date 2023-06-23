@@ -47,6 +47,28 @@ namespace TaskManager.Core.Services.Task
 
         public async Task<bool> CreateTaskAsync(string userId, string description, string category)
         {
+            var user = await userCollection
+                .Find(x => x.Id.ToString() == userId)
+                .FirstOrDefaultAsync();
+
+            var taskCategory = await categoryCollection
+                .Find(x => x.Name == category)
+                .FirstOrDefaultAsync();
+
+            var status = await statusCollection
+                .Find(x => x.Name == "Awaiting")
+                .FirstOrDefaultAsync();
+
+            var task = new UserTask
+            {
+                UserId = user.Id,
+                CategoryId = taskCategory.Id,
+                StatusId = status.Id,
+                Description = description,
+                CreatedOn = GetDateTime()
+            };
+
+            await taskCollection.InsertOneAsync(task);
 
             return true;
         }
