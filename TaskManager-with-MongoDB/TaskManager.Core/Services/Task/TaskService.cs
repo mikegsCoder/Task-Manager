@@ -72,5 +72,10 @@ namespace TaskManager.Core.Services.Task
 
             return true;
         }
+
+        private DateTime GetDateTime()
+        {
+            return DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
+        }
     }
 }
