@@ -45,6 +45,72 @@ namespace TaskManager.Core.Services.Task
             remarkCollection = db.GetCollection<Remark>(DatabaseConstants.RemarkCollectionName);
         }
 
+        public async Task<List<TaskViewModel>> GetTasksAsync(string userId, string categorySelector, string statusSelector)
+        {
+            List<TaskViewModel> tasks;
+
+            if (categorySelector == null && statusSelector == null)
+            {
+                tasks = await taskCollection
+                    .Find(x => x.UserId.ToString() == userId && !x.IsDeleted)
+                    .Sort(new BsonDocument("CreatedOn", 1))
+                    .Project(x => new TaskViewModel
+                    {
+                        Id = x.Id.ToString(),
+                        Status = "_" + x.StatusId.ToString(),
+                        Category = "_" + x.CategoryId.ToString(),
+                        Description = x.Description,
+                        CreatedOnDate = x.CreatedOn,
+                        FinishedOnDate = x.FinishedOn
+                    })
+                    .ToListAsync();
+            }
+            else if (categorySelector != null)
+            {
+                var category = await categoryCollection
+                    .Find(x => x.Name == categorySelector)
+                    .FirstOrDefaultAsync();
+
+                tasks = await taskCollection
+                    .Find(x => x.UserId.ToString() == userId && !x.IsDeleted && x.CategoryId == category.Id)
+                    .Sort(new BsonDocument("CreatedOn", 1))
+                    .Project(x => new TaskViewModel
+                    {
+                        Id = x.Id.ToString(),
+                        Status = "_" + x.StatusId.ToString(),
+                        Category = category.Name,
+                        Description = x.Description,
+                        CreatedOnDate = x.CreatedOn,
+                        FinishedOnDate = x.FinishedOn
+                    })
+                    .ToListAsync();
+            }
+            else
+            {
+                var status = await statusCollection
+                    .Find(x => x.Name == statusSelector)
+                    .FirstOrDefaultAsync();
+
+                tasks = await taskCollection
+                   .Find(x => x.UserId.ToString() == userId && !x.IsDeleted && x.StatusId == status.Id)
+                   .Sort(new BsonDocument("CreatedOn", 1))
+                   .Project(x => new TaskViewModel
+                   {
+                       Id = x.Id.ToString(),
+                       Status = status.Name,
+                       Category = "_" + x.CategoryId.ToString(),
+                       Description = x.Description,
+                       CreatedOnDate = x.CreatedOn,
+                       FinishedOnDate = x.FinishedOn
+                   })
+                   .ToListAsync();
+            }
+
+            tasks.ForEach(t => GetStatusAndCategory(t));
+
+            return tasks;
+        }
+
         public async Task<bool> CreateTaskAsync(string userId, string description, string category)
         {
             var user = await userCollection
