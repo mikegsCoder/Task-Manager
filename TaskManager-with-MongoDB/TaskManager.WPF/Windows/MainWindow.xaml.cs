@@ -182,5 +182,31 @@ namespace TaskManager.WPF
         {
            
         }
+
+        private async void UpdateTaskList()
+        {
+            await taskController.GetTasksAsync(categorySelector, statusSelector);
+
+            var taskListView = TasksListView as ListView;
+
+            taskListView.Items.Clear();
+
+            if (taskListView == null)
+            {
+                return;
+            }
+
+            foreach (var task in context.tasks)
+            {
+                var item = new ListViewItem { Content = task };
+                item.Selected += SelectedTask;
+
+                taskListView.Items.Add(item);
+            }
+
+            selectedTask = null;
+
+            context.NoTasks = context.tasks.Count == 0 ? true : false;
+        }
     }
 }
