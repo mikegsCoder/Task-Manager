@@ -33,5 +33,17 @@ namespace TaskManager.WPF.Controllers
             taskService = _taskService;
             context = _context;
         }
+
+        public async Task GetTasksAsync(string categorySelector, string statusSelector)
+        {
+            try
+            {
+                context.tasks = await taskService.GetTasksAsync(context.user.Id, categorySelector, statusSelector);
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex.Message);
+            }
+        }
     }
 }
