@@ -27,6 +27,10 @@ namespace TaskManager.Core.Constants
         public const string Logout_Title_Msg = "See you {0}.";
         public const string Logout_Text_Msg = "See you later!";
 
+        // TaskController:
+        public const string Task_Description_Error_Msg = "Task description should be between {0} and {1} characters long.";
+        public const string Task_Export_Success_Msg = "Your tasks successfully exported in {0}\\Tasks.{1}";
+
         // MainWindow:
         public const string Main_Window_Hello_Text = "Hello {0}!";
     }
