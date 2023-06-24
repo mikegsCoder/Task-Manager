@@ -18,6 +18,7 @@ using TaskManager.WPF.DataContexts;
 using static TaskManager.WPF.Windows.MessageBoxes.MessageBoxes;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using TaskManager.Core.Constants;
+using TaskManager.WPF.Windows.Task;
 
 namespace TaskManager.WPF.Controllers
 {
@@ -39,6 +40,33 @@ namespace TaskManager.WPF.Controllers
             try
             {
                 context.tasks = await taskService.GetTasksAsync(context.user.Id, categorySelector, statusSelector);
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex.Message);
+            }
+        }
+
+        public async Task CreateTaskAsync()
+        {
+            TaskAddWindow taskAddWindow = new TaskAddWindow();
+
+            if (taskAddWindow.ShowDialog() == false)
+            {
+                return;
+            }
+
+            string description = taskAddWindow.TaskDescription.Text.Trim();
+            string category = taskAddWindow.category;
+
+            if (!ValidateDescription(description))
+            {
+                return;
+            }
+
+            try
+            {
+                await taskService.CreateTaskAsync(context.user.Id, description, category);
             }
             catch (Exception ex)
             {
