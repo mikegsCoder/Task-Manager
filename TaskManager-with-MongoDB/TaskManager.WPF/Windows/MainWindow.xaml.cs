@@ -89,7 +89,10 @@ namespace TaskManager.WPF
         }
         private void OtherCategory_Click(object sender, RoutedEventArgs e)
         {
-           
+            categorySelector = "Other";
+            statusSelector = null;
+
+            UpdateTaskList();
         }
 
         // By Status:
