@@ -68,7 +68,10 @@ namespace TaskManager.WPF
         // By Category
         private void PersonalCategory_Click(object sender, RoutedEventArgs e)
         {
-           
+            categorySelector = "Personal";
+            statusSelector = null;
+
+            UpdateTaskList();
         }
         private void JobCategory_Click(object sender, RoutedEventArgs e)
         {
