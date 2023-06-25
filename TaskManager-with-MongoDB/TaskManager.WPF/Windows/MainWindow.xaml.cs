@@ -75,7 +75,10 @@ namespace TaskManager.WPF
         }
         private void JobCategory_Click(object sender, RoutedEventArgs e)
         {
-           
+            categorySelector = "Job";
+            statusSelector = null;
+
+            UpdateTaskList();
         }
         private void FamilyCategory_Click(object sender, RoutedEventArgs e)
         {
