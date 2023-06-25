@@ -82,7 +82,10 @@ namespace TaskManager.WPF
         }
         private void FamilyCategory_Click(object sender, RoutedEventArgs e)
         {
-            
+            categorySelector = "Family";
+            statusSelector = null;
+
+            UpdateTaskList();
         }
         private void OtherCategory_Click(object sender, RoutedEventArgs e)
         {
