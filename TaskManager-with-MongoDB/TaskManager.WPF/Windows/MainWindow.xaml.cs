@@ -112,7 +112,10 @@ namespace TaskManager.WPF
         }
         private void FinishedStatus_Click(object sender, RoutedEventArgs e)
         {
-           
+            categorySelector = null;
+            statusSelector = "Finished";
+
+            UpdateTaskList();
         }
         private void CanceledStatus_Click(object sender, RoutedEventArgs e)
         {
