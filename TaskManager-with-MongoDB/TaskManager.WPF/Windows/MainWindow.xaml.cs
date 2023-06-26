@@ -98,7 +98,10 @@ namespace TaskManager.WPF
         // By Status:
         private void AwaitingStatus_Click(object sender, RoutedEventArgs e)
         {
-            
+            categorySelector = null;
+            statusSelector = "Awaiting";
+
+            UpdateTaskList();
         }
         private void InProgressStatus_Click(object sender, RoutedEventArgs e)
         {
