@@ -212,7 +212,9 @@ namespace TaskManager.WPF
 
         private void SelectedTask(object sender, RoutedEventArgs e)
         {
-           
+            var selectedItem = sender as ListViewItem;
+
+            selectedTask = selectedItem.Content as TaskViewModel;
         }
 
         private async void UpdateTaskList()
