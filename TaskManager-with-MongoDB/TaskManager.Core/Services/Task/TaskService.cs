@@ -139,6 +139,51 @@ namespace TaskManager.Core.Services.Task
             return true;
         }
 
+        public async Task<bool> EditTaskAsync(string taskId, string description, string category, string status)
+        {
+            var taskCategory = await categoryCollection
+                .Find(x => x.Name == category)
+                .FirstOrDefaultAsync();
+
+            var taskStatus = await statusCollection
+                .Find(x => x.Name == status)
+                .FirstOrDefaultAsync();
+
+            var taskFilter = Builders<UserTask>.Filter
+                .Eq(t => t.Id, new ObjectId(taskId));
+
+            if (status == "Finished")
+            {
+                var taskUpdate = Builders<UserTask>
+                    .Update
+                    .Set(t => t.Description, description)
+                    .Set(t => t.CategoryId, taskCategory.Id)
+                    .Set(t => t.StatusId, taskStatus.Id)
+                    .Set(t => t.ModifiedOn, GetDateTime())
+                    .Set(t => t.FinishedOn, GetDateTime())
+                    .Set(t => t.IsFinished, true);
+
+                var taskResult = await taskCollection
+                    .UpdateOneAsync(taskFilter, taskUpdate);
+            }
+            else
+            {
+                var taskUpdate = Builders<UserTask>
+                    .Update
+                    .Set(t => t.Description, description)
+                    .Set(t => t.CategoryId, taskCategory.Id)
+                    .Set(t => t.StatusId, taskStatus.Id)
+                    .Set(t => t.ModifiedOn, GetDateTime())
+                    .Set(t => t.FinishedOn, null)
+                    .Set(t => t.IsFinished, false);
+
+                var taskResult = await taskCollection
+                    .UpdateOneAsync(taskFilter, taskUpdate);
+            }
+
+            return true;
+        }
+
         private DateTime GetDateTime()
         {
             return DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
