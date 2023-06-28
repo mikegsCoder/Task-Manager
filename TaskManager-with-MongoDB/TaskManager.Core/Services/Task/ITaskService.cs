@@ -15,5 +15,7 @@ namespace TaskManager.Core.Services.Task
         Task<List<TaskViewModel>> GetTasksAsync(string userId, string categorySelector, string statusSelector);
 
         Task<bool> EditTaskAsync(string taskId, string description, string category, string status);
+
+        Task<bool> DeleteTaskAsync(string taskId);
     }
 }

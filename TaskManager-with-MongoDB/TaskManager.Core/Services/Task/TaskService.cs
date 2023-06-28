@@ -184,6 +184,38 @@ namespace TaskManager.Core.Services.Task
             return true;
         }
 
+        public async Task<bool> DeleteTaskAsync(string taskId)
+        {
+            // update task:
+            var taskFilter = Builders<UserTask>.Filter
+                .Eq(t => t.Id, new ObjectId(taskId));
+
+            var taskUpdate = Builders<UserTask>
+                .Update
+                .Set(t => t.DeletedOn, GetDateTime())
+                .Set(t => t.IsDeleted, true);
+
+            var taskResult = await taskCollection
+                .UpdateOneAsync(taskFilter, taskUpdate);
+
+            // update remarks:
+            var remarkFilter1 = Builders<Remark>
+                .Filter.Eq(r => r.TaskId, new ObjectId(taskId));
+
+            var remarkFilter2 = Builders<Remark>
+                .Filter.Eq(r => r.IsDeleted, false);
+
+            var remarkUpdate = Builders<Remark>
+                .Update
+                .Set(r => r.DeletedOn, GetDateTime())
+                .Set(r => r.IsDeleted, true);
+
+            var remarkResult = await remarkCollection
+                .UpdateManyAsync(remarkFilter1 & remarkFilter2, remarkUpdate);
+
+            return true;
+        }
+
         private DateTime GetDateTime()
         {
             return DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
