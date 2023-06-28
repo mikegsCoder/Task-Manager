@@ -175,7 +175,14 @@ namespace TaskManager.WPF
 
         private async void DelBtn_Click(object sender, RoutedEventArgs e)
         {
-           
+            if (selectedTask == null)
+            {
+                return;
+            }
+
+            await taskController.DeleteTaskAsync(selectedTask);
+
+            UpdateTaskList();
         }
         
         private void ExportJson_Click(object sender, RoutedEventArgs e)
