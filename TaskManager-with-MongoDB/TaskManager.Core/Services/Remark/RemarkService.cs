@@ -32,5 +32,22 @@ namespace TaskManager.Core.Services.RemarkService
             taskCollection = db.GetCollection<UserTask>(DatabaseConstants.TaskCollectionName);
             remarkCollection = db.GetCollection<Remark>(DatabaseConstants.RemarkCollectionName);
         }
+
+        public async Task<List<RemarkViewModel>> GetRemarksAsync(string taskId)
+        {
+            var remarks = await remarkCollection
+              .Find(x => x.TaskId.ToString() == taskId && !x.IsDeleted)
+              .Sort(new BsonDocument("CreatedOn", 1))
+              .Project(x => new RemarkViewModel
+              {
+                  Id = x.Id.ToString(),
+                  TaskId = x.TaskId.ToString(),
+                  Content = x.Content,
+                  CreatedOnDate = x.CreatedOn
+              })
+              .ToListAsync();
+
+            return remarks;
+        }
     }
 }

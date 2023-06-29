@@ -10,6 +10,6 @@ namespace TaskManager.Core.Services.RemarkService
 {
     public interface IRemarkService
     {
-
+        Task<List<RemarkViewModel>> GetRemarksAsync(string taskId);
     }
 }
