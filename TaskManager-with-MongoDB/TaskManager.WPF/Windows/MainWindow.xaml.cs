@@ -38,6 +38,7 @@ namespace TaskManager.WPF
 
         public UserController userController;
         public TaskController taskController;
+        public RemarkController remarkController;
 
         public MainWindowContext context;
 
@@ -53,6 +54,7 @@ namespace TaskManager.WPF
 
             context = _context;
 
+            remarkController = new RemarkController(remarkService);
             userController = new UserController(userService, context);
             taskController = new TaskController(taskService, context);
 
