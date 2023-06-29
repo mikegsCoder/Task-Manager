@@ -4,6 +4,7 @@ using MongoDB.Driver;
 using TaskManager.Core.Services.UserService;
 using TaskManager.WPF.Controllers;
 using TaskManager.Core.Services.Task;
+using TaskManager.Core.Services.RemarkService;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -19,6 +20,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddSingleton(typeof(IMongoClient), new MongoClient("mongodb://localhost:27017"));
             services.AddScoped(typeof(IUserService), typeof(UserService));
             services.AddScoped(typeof(ITaskService), typeof(TaskService));
+            services.AddScoped(typeof(IRemarkService), typeof(RemarkService));
 
             return services;
         }
