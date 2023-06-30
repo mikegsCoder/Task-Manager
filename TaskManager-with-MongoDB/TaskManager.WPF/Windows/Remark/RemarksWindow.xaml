@@ -1,0 +1,88 @@
+﻿<Window x:Class="TaskManager.WPF.RemarksWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaskManager.WPF"
+        mc:Ignorable="d"
+        Title="Remarks" Height="300" Width="700" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Style.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5" />
+                    </Style>
+                </Style.Resources>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="Width" Value="100"/>
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="Margin" Value="10,0,10,0"/>
+            </Style>
+        </Grid.Resources>
+
+        <StackPanel 
+            Grid.Row="0" 
+            Name="Header"
+            Orientation="Horizontal"
+            Background="LightGray"
+            Height="40">
+
+            <TextBlock x:Name="TaskDescription" 
+                Width="700" 
+                HorizontalAlignment="Center"
+                Padding="10"
+                FontSize="15"
+                FontWeight="DemiBold"
+                Margin="0,-1,0,0"
+                TextAlignment="Center" />
+
+        </StackPanel>
+
+        <ListView 
+            Grid.Row="1" 
+            x:Name="RemarksListView"
+            SelectionMode="Single"
+            ItemsSource="{Binding Path=remarks}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=TaskId}" Width="0"></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Content}" Width="595">Content</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=CreatedOn}" Width="80">Cteated On</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Label
+            x:Name="NoRemarksLabel"
+            Grid.Row="1"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            FontSize="25"
+            Foreground="OrangeRed"
+            Visibility="Hidden">
+            No remarks for this task in database.
+        </Label>
+
+        <StackPanel 
+            Grid.Row="2" 
+            Name="Footer"
+            Orientation="Horizontal"
+            Background="LightGray"
+            HorizontalAlignment="Center"
+            Height="40"
+            Width="700">
+            <Button Content="Add" Margin="180,0,10,0" Foreground="DarkGreen" BorderBrush="DarkGreen" Click="AddBtn_Click" />
+
+            <Button Content="Edit" Foreground="DarkBlue" BorderBrush="DarkBlue" Click="EditBtn_Click" />
+
+            <Button Content="Delete" Foreground="DarkRed" BorderBrush="DarkRed" Click="DelBtn_Click" />
+        </StackPanel>
+    </Grid>
+</Window>
