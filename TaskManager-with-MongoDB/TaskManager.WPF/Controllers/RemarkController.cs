@@ -26,5 +26,18 @@ namespace TaskManager.WPF.Controllers
             remarkService = _remarkService;
         }
 
+        public async Task<List<RemarkViewModel>> GetRemarksAsync(string taskId)
+        {
+            try
+            {
+                return await remarkService.GetRemarksAsync(taskId);
+            }
+            catch (Exception ex)
+            {
+                ShowError(ex.Message);
+
+                return null;
+            }
+        }
     }
 }
