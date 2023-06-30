@@ -176,7 +176,14 @@ namespace TaskManager.WPF
 
         private void RemarksBtn_Click(object sender, RoutedEventArgs e)
         {
-           
+            if (selectedTask == null)
+            {
+                return;
+            }
+
+            RemarksWindow remarksWindow = new RemarksWindow(selectedTask, remarkController);
+
+            remarksWindow.Show();
         }
 
         private async void DelBtn_Click(object sender, RoutedEventArgs e)
