@@ -33,6 +33,24 @@ namespace TaskManager.Core.Services.RemarkService
             remarkCollection = db.GetCollection<Remark>(DatabaseConstants.RemarkCollectionName);
         }
 
+        public async Task<bool> CreateRemarkAsync(string taskId, string content)
+        {
+            var task = await taskCollection
+                .Find(x => x.Id.ToString() == taskId)
+                .FirstOrDefaultAsync();
+
+            Remark remark = new Remark
+            {
+                Content = content,
+                TaskId = task.Id,
+                CreatedOn = GetDateTime()
+            };
+
+            await remarkCollection.InsertOneAsync(remark);
+
+            return true;
+        }
+
         public async Task<List<RemarkViewModel>> GetRemarksAsync(string taskId)
         {
             var remarks = await remarkCollection
@@ -48,6 +66,11 @@ namespace TaskManager.Core.Services.RemarkService
               .ToListAsync();
 
             return remarks;
+        }
+
+        private DateTime GetDateTime()
+        {
+            return DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
         }
     }
 }
