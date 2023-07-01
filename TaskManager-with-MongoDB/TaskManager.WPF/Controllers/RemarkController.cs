@@ -66,5 +66,22 @@ namespace TaskManager.WPF.Controllers
                 return null;
             }
         }
+
+        private bool ValidateContent(string content)
+        {
+            if (string.IsNullOrEmpty(content)
+                || content.Length < 5
+                || content.Length > 75)
+            {
+                ShowInvalidInput(string.Format(
+                    Messages.Remark_Description_Error_Msg,
+                    ValidationConstants.Remark_Content_MinLength,
+                    ValidationConstants.Remark_Content_MaxLength));
+
+                return false;
+            }
+
+            return true;
+        }
     }
 }
