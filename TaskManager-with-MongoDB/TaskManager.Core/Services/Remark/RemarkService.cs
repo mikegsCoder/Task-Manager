@@ -51,6 +51,22 @@ namespace TaskManager.Core.Services.RemarkService
             return true;
         }
 
+        public async Task<bool> EditRemarkAsync(string remarkId, string content)
+        {
+            var remarkFilter = Builders<Remark>
+                .Filter.Eq(r => r.Id, new ObjectId(remarkId));
+
+            var remarkUpdate = Builders<Remark>
+                .Update
+                .Set(r => r.Content, content)
+                .Set(r => r.ModifiedOn, GetDateTime());
+
+            var remarkResult = await remarkCollection
+                .UpdateOneAsync(remarkFilter, remarkUpdate);
+
+            return remarkResult.ModifiedCount == 1;
+        }
+
         public async Task<List<RemarkViewModel>> GetRemarksAsync(string taskId)
         {
             var remarks = await remarkCollection
