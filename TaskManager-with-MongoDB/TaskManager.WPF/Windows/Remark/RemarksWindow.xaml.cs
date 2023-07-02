@@ -62,7 +62,9 @@ namespace TaskManager.WPF
 
         private void SelectedRemark(object sender, RoutedEventArgs e)
         {
-           
+            var selectedItem = sender as ListViewItem;
+
+            selectedRemark = selectedItem.Content as RemarkViewModel;
         }
 
         private async void UpdateRemarksList()
