@@ -52,7 +52,14 @@ namespace TaskManager.WPF
 
         private async void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-          
+            if (selectedRemark == null)
+            {
+                return;
+            }
+
+            await remarkController.EditRemarkAsync(selectedRemark, task);
+
+            UpdateRemarksList();
         }
 
         private async void DelBtn_Click(object sender, RoutedEventArgs e)
