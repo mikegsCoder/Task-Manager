@@ -15,5 +15,7 @@ namespace TaskManager.Core.Services.RemarkService
         Task<bool> CreateRemarkAsync(string taskId, string content);
 
         Task<bool> EditRemarkAsync(string remarkId, string content);
+
+        Task<bool> DeleteRemarkAsync(string remarkId);
     }
 }
