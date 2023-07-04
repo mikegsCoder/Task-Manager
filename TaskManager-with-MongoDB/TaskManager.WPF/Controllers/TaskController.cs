@@ -19,19 +19,23 @@ using static TaskManager.WPF.Windows.MessageBoxes.MessageBoxes;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using TaskManager.Core.Constants;
 using TaskManager.WPF.Windows.Task;
+using TaskManager.Core.Services.File;
 
 namespace TaskManager.WPF.Controllers
 {
     public class TaskController
     {
         private readonly ITaskService taskService;
+        private readonly IFileService fileService;
         private readonly MainWindowContext context;
 
         public TaskController(
             ITaskService _taskService,
+            IFileService _fileService,
             MainWindowContext _context)
         {
             taskService = _taskService;
+            fileService = _fileService;
             context = _context;
         }
 
