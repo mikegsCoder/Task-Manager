@@ -5,6 +5,7 @@ using TaskManager.Core.Services.UserService;
 using TaskManager.WPF.Controllers;
 using TaskManager.Core.Services.Task;
 using TaskManager.Core.Services.RemarkService;
+using TaskManager.Core.Services.File;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -21,6 +22,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped(typeof(IUserService), typeof(UserService));
             services.AddScoped(typeof(ITaskService), typeof(TaskService));
             services.AddScoped(typeof(IRemarkService), typeof(RemarkService));
+            services.AddScoped(typeof(IFileService), typeof(FileService));
 
             return services;
         }
