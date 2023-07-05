@@ -67,5 +67,32 @@ namespace TaskManager.Core.Services.File
 
             return tasks;
         }
+
+        private void GetStatusAndCategory(TaskDto task)
+        {
+            if (task.Status.StartsWith("_"))
+            {
+                string statusId = task.Status.Substring(1);
+
+                task.Status = statusCollection
+                    .Find(x => x.Id.ToString() == statusId)
+                    .FirstOrDefaultAsync()
+                    .GetAwaiter()
+                    .GetResult()
+                    .Name;
+            }
+
+            if (task.Category.StartsWith("_"))
+            {
+                string categoryId = task.Category.Substring(1);
+
+                task.Category = categoryCollection
+                    .Find(x => x.Id.ToString() == categoryId)
+                    .FirstOrDefaultAsync()
+                    .GetAwaiter()
+                    .GetResult()
+                    .Name;
+            }
+        }
     }
 }
