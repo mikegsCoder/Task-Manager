@@ -114,5 +114,15 @@ namespace TaskManager.Core.Services.File
                         .GetAwaiter()
                         .GetResult();
         }
+
+        private void FixDateTimeFormat(TaskDto task)
+        {
+            task.CreatedOn = EditDateTimeFormat(task.CreatedOn);
+            task.FinishedOn = task.FinishedOn != ""
+                ? EditDateTimeFormat(task.FinishedOn)
+                : "";
+
+            task.Remarks.ForEach(r => r.CreatedOn = EditDateTimeFormat(r.CreatedOn));
+        }
     }
 }
