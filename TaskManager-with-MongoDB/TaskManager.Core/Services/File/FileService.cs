@@ -13,6 +13,7 @@ using TaskManager.Infrastructure.Data.Models.DataBaseModels;
 using TaskManager.Core.Constants;
 using MongoDB.Bson;
 using TaskManager.Core.ViewModels.Task;
+using TaskManager.Core.DTO;
 
 namespace TaskManager.Core.Services.File
 {
@@ -42,6 +43,29 @@ namespace TaskManager.Core.Services.File
 
         public async void ExportTasksAsync(string userId, string path, string format)
         {
+        }
+
+        private async Task<List<TaskDto>> GetTasksData(string userId)
+        {
+            List<TaskDto> tasks = await taskCollection
+                .Find(x => x.UserId.ToString() == userId && !x.IsDeleted)
+                .Sort(new BsonDocument("CreatedOn", 1))
+                .Project(t => new TaskDto
+                {
+                    Category = "_" + t.CategoryId.ToString(),
+                    Status = "_" + t.StatusId.ToString(),
+                    Description = t.Id.ToString() + "_" + t.Description,
+                    CreatedOn = t.CreatedOn.ToString(),
+                    IsFinished = t.IsFinished,
+                    FinishedOn = t.FinishedOn.HasValue ? t.FinishedOn.Value.ToString() : "",
+                })
+                .ToListAsync();
+
+            tasks.ForEach(t => GetStatusAndCategory(t));
+            tasks.ForEach(t => GetRemarks(t));
+            tasks.ForEach(t => FixDateTimeFormat(t));
+
+            return tasks;
         }
     }
 }
