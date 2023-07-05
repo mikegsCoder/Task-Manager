@@ -94,5 +94,25 @@ namespace TaskManager.Core.Services.File
                     .Name;
             }
         }
+
+        private void GetRemarks(TaskDto task)
+        {
+            int separatorIndex = task.Description.IndexOf("_");
+
+            string taskId = task.Description.Substring(0, separatorIndex);
+
+            task.Description = task.Description.Substring(separatorIndex + 1);
+
+            task.Remarks = remarkCollection
+                        .Find(x => x.TaskId.ToString() == taskId && !x.IsDeleted)
+                        .Project(x => new RemarkDto
+                        {
+                            Content = x.Content,
+                            CreatedOn = x.CreatedOn.ToString()
+                        })
+                        .ToListAsync()
+                        .GetAwaiter()
+                        .GetResult();
+        }
     }
 }
