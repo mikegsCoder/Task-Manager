@@ -124,5 +124,15 @@ namespace TaskManager.Core.Services.File
 
             task.Remarks.ForEach(r => r.CreatedOn = EditDateTimeFormat(r.CreatedOn));
         }
+
+        private string EditDateTimeFormat(string dateTime)
+        {
+            int dotIndex = dateTime.IndexOf(".");
+            dateTime = dateTime.Substring(0, dotIndex)
+                .Replace("-", ".")
+                .Replace("T", " ");
+
+            return dateTime;
+        }
     }
 }
