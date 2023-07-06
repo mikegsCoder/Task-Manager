@@ -43,6 +43,11 @@ namespace TaskManager.Core.Services.File
 
         public async void ExportTasksAsync(string userId, string path, string format)
         {
+            var tasksData = await GetTasksData(userId);
+
+            var result = SerializeData(tasksData, format);
+
+            await System.IO.File.WriteAllTextAsync(path + "/Tasks." + format, result);
         }
 
         private async Task<List<TaskDto>> GetTasksData(string userId)
