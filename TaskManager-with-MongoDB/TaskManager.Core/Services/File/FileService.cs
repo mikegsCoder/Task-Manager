@@ -68,6 +68,26 @@ namespace TaskManager.Core.Services.File
             return tasks;
         }
 
+        private string SerializeData(List<TaskDto> tasksData, string format)
+        {
+            string result;
+
+            if (format == "json")
+            {
+                result = JsonConvert.SerializeObject(tasksData, Newtonsoft.Json.Formatting.Indented);
+            }
+            else
+            {
+                var sb = new StringBuilder();
+
+                var serializer = new XmlSerializer(typeof(List<TaskDto>), new XmlRootAttribute("Tasks"));
+                serializer.Serialize(new StringWriter(sb), tasksData, new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty }));
+                result = sb.ToString();
+            }
+
+            return result;
+        }
+
         private void GetStatusAndCategory(TaskDto task)
         {
             if (task.Status.StartsWith("_"))
