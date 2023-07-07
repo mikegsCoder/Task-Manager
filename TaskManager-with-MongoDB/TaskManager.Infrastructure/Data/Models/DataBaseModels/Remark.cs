@@ -1,5 +1,4 @@
 ﻿using MongoDB.Bson;
-using System.ComponentModel.DataAnnotations;
 
 namespace TaskManager.Infrastructure.Data.Models.DataBaseModels
 {
