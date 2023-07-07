@@ -1,6 +1,6 @@
 # Task-Manager
 
-:dart:  My project for the [Windows Presentation Foundation](https://github.com/mikegsCoder/Self-Education/tree/main/WPF) course. This is a desktop application where you can register, login and manage your own tasks. Each task has category, status and collection of remarks.
+:dart:  My project for the [Windows Presentation Foundation](https://github.com/mikegsCoder/Self-Education/tree/main/WPF) and [MongoDB with C#](https://github.com/mikegsCoder/Self-Education/tree/main/MongoDB-with-CSharp) courses. This is a desktop application where you can register, login and manage your own tasks. Each task has category, status and collection of remarks.
 
 ## :arrow_forward: Getting Started:
 
@@ -10,9 +10,7 @@
    ```
 2. Open the solution with Visual Studio 2022.
    
-3. Fix the Connection String if you need to do this. You can find it in TaskManager/Infrastricture/Data/ApplicationDbContext.cs.
-   
-4. Start TaskManager.WPF project. On startup TaskManager database will be created in your MS SQL Server and the data will be seeded.
+3. Start TaskManager.WPF project. On startup TaskManager database will be created and the data will be seeded.
    
 ## :information_source: Application Functionality:
 
@@ -42,8 +40,8 @@
 ## :hammer_and_wrench: Technologies and Tools used:
 
 - Windows Presentation Foundation
-- Entity Framework Core
-- MS SQL
+- Entity Framework Core and MSSQL for TaskManager with MSSQL version
+- MongoDbDriver and MongoDB for TaskManager with MongoDB version
 - C#
 
 ## :framed_picture: Screenshot - Main Window:
