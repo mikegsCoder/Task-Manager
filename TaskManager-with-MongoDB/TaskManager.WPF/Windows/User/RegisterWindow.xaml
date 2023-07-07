@@ -56,23 +56,23 @@
 
         <TextBlock Grid.Row="0" Grid.Column="0" Text="First name:" />
 
-        <TextBox Grid.Row="0" Grid.Column="1" Name="FirstName" />
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="FirstName" />
 
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Last name:" />
 
-        <TextBox Grid.Row="1" Grid.Column="1" Name="LastName" />
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="LastName" />
 
         <TextBlock Grid.Row="2" Grid.Column="0" Text="Username:" />
 
-        <TextBox Grid.Row="2" Grid.Column="1" Name="Username" />
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="Username" />
 
         <TextBlock Grid.Row="3" Grid.Column="0" Text="Password:" />
 
-        <PasswordBox Grid.Row="3" Grid.Column="1" Name="Password" />
+        <PasswordBox Grid.Row="3" Grid.Column="1" x:Name="Password" />
 
         <TextBlock Grid.Row="4" Grid.Column="0" Text="Repeat password:" />
 
-        <PasswordBox Grid.Row="4" Grid.Column="1" Name="Repass" />
+        <PasswordBox Grid.Row="4" Grid.Column="1" x:Name="Repass" />
 
         <Button Grid.Row="5" Grid.Column="0" Content="Register" Foreground="DarkGreen" BorderBrush="DarkGreen" Click="RegisterBtnClick"/>
 

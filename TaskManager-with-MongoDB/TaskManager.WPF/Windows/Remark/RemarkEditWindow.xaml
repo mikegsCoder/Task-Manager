@@ -29,7 +29,7 @@
 
         <StackPanel 
             Grid.Row="0" 
-            Name="Header"
+            x:Name="Header"
             Orientation="Horizontal"
             Background="LightGray"
             Height="40">
@@ -47,14 +47,14 @@
 
         <TextBox
             Grid.Row="1" 
-            Name="RemarkContent"
+            x:Name="RemarkContent"
             TextWrapping="Wrap"
             Padding="10">
         </TextBox>
 
         <StackPanel 
             Grid.Row="2" 
-            Name="Footer"
+            x:Name="Footer"
             Orientation="Horizontal"
             Background="LightGray"
             HorizontalAlignment="Center"

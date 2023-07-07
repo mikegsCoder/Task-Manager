@@ -1,25 +1,13 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
-using System.Windows;
 using TaskManager.Core.Services.Task;
-using TaskManager.Core.Services.UserService;
-using TaskManager.Core.ViewModels.Remark;
 using TaskManager.Core.ViewModels.Task;
-using TaskManager.Core.ViewModels.User;
-using TaskManager.Infrastructure.Data.Models.DataBaseModels;
 using TaskManager.WPF.DataContexts;
-using static TaskManager.WPF.Windows.MessageBoxes.MessageBoxes;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using TaskManager.Core.Constants;
 using TaskManager.WPF.Windows.Task;
 using TaskManager.Core.Services.File;
+using static TaskManager.WPF.Windows.MessageBoxes.MessageBoxes;
 
 namespace TaskManager.WPF.Controllers
 {
@@ -137,7 +125,6 @@ namespace TaskManager.WPF.Controllers
             {
                 fileService.ExportTasksAsync(context.user.Id, path, format);
 
-                //ShowSuccess($"Your tasks successfully exported in {path}\\Tasks.{format}");
                 ShowSuccess(string.Format(Messages.Task_Export_Success_Msg, path, format));
             }
             catch (Exception ex)

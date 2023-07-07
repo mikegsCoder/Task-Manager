@@ -35,7 +35,7 @@
 
         <Grid 
             Grid.Row="0" 
-            Name="Header"
+            x:Name="Header"
             Background="LightGray"
             Height="80">
             <Grid.RowDefinitions>
@@ -69,14 +69,14 @@
 
         <TextBox
             Grid.Row="1" 
-            Name="TaskDescription"
+            x:Name="TaskDescription"
             TextWrapping="Wrap"
             Padding="10">
         </TextBox>
 
         <StackPanel 
             Grid.Row="2" 
-            Name="Footer"
+            x:Name="Footer"
             Orientation="Horizontal"
             Background="LightGray"
             HorizontalAlignment="Center"

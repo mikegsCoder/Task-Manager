@@ -1,8 +1,6 @@
 ﻿using System;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using System.Threading.Tasks;
-using MongoDB.Driver;
 using TaskManager.WPF.InitialSeed;
 
 namespace TaskManager.WPF

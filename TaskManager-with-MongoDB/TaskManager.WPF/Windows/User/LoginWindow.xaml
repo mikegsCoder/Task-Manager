@@ -53,11 +53,11 @@
 
         <TextBlock Grid.Row="0" Grid.Column="0" Text="Username:" />
 
-        <TextBox Grid.Row="0" Grid.Column="1" Name="Username" />
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="Username" />
 
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Password:" />
 
-        <PasswordBox Grid.Row="1" Grid.Column="1" Name="Password" />
+        <PasswordBox Grid.Row="1" Grid.Column="1" x:Name="Password" />
 
         <Button Grid.Row="2" Grid.Column="0" Content="Login" Foreground="DarkBlue" BorderBrush="DarkBlue" Click="LoginBtnClick"/>
 
