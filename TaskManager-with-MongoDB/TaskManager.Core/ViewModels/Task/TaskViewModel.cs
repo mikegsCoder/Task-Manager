@@ -1,7 +1,4 @@
-﻿using MongoDB.Driver;
-using TaskManager.Infrastructure.Data.Models.DataBaseModels;
-
-namespace TaskManager.Core.ViewModels.Task
+﻿namespace TaskManager.Core.ViewModels.Task
 {
     public class TaskViewModel
     {

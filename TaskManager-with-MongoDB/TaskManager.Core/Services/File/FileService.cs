@@ -1,18 +1,11 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.Xml;
-using TaskManager.Infrastructure.Data;
 using MongoDB.Driver;
 using TaskManager.Infrastructure.Data.Models.DataBaseModels;
 using TaskManager.Core.Constants;
 using MongoDB.Bson;
-using TaskManager.Core.ViewModels.Task;
 using TaskManager.Core.DTO;
 
 namespace TaskManager.Core.Services.File
@@ -22,7 +15,6 @@ namespace TaskManager.Core.Services.File
         private readonly IMongoClient client;
         private readonly IMongoDatabase db;
 
-        //private IMongoCollection<User> userCollection;
         private IMongoCollection<UserTask> taskCollection;
         private IMongoCollection<Status> statusCollection;
         private IMongoCollection<Category> categoryCollection;
@@ -34,7 +26,6 @@ namespace TaskManager.Core.Services.File
 
             db = client.GetDatabase(DatabaseConstants.DatabaseName);
 
-            //userCollection = db.GetCollection<User>(DatabaseConstants.UserCollectionName);
             taskCollection = db.GetCollection<UserTask>(DatabaseConstants.TaskCollectionName);
             statusCollection = db.GetCollection<Status>(DatabaseConstants.StatusCollectionName);
             categoryCollection = db.GetCollection<Category>(DatabaseConstants.CategoryCollectionName);
