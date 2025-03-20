@@ -1,0 +1,68 @@
+﻿<Window x:Class="TaskManager.WPF.Windows.Remark.RemarkEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaskManager.WPF.Windows.Remark"
+        mc:Ignorable="d"
+        Title="Edit Remark" Height="200" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Style.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5" />
+                    </Style>
+                </Style.Resources>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="Width" Value="100"/>
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="Margin" Value="10,0,10,0"/>
+            </Style>
+        </Grid.Resources>
+
+        <StackPanel 
+            Grid.Row="0" 
+            Name="Header"
+            Orientation="Horizontal"
+            Background="LightGray"
+            Height="40">
+
+            <TextBlock x:Name="TaskDescription" 
+                Width="600" 
+                HorizontalAlignment="Center"
+                FontSize="15"
+                FontWeight="DemiBold"
+                Margin="0,-1,0,0"
+                Padding="10"
+                TextAlignment="Center" />
+
+        </StackPanel>
+
+        <TextBox
+            Grid.Row="1" 
+            Name="RemarkContent"
+            TextWrapping="Wrap"
+            Padding="10">
+        </TextBox>
+
+        <StackPanel 
+            Grid.Row="2" 
+            Name="Footer"
+            Orientation="Horizontal"
+            Background="LightGray"
+            HorizontalAlignment="Center"
+            Height="40"
+            Width="600">
+            <Button Content="Edit" Foreground="DarkBlue" BorderBrush="DarkBlue" Margin="190,0,10,0" Click="EditBtn_Click" />
+
+            <Button Content="Cancel" Click="CancelBtn_Click" />
+        </StackPanel>
+    </Grid>
+</Window>
