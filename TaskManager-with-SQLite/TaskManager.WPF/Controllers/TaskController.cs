@@ -128,14 +128,14 @@ namespace TaskManager.WPF.Controllers
 
         public void ExportTasks(string format)
         {
-            var dialog = new CommonOpenFileDialog();
-            dialog.IsFolderPicker = true;
-            CommonFileDialogResult result = dialog.ShowDialog();
-
-            string path = dialog.FileName;
-
             try
             {
+                var dialog = new CommonOpenFileDialog();
+                dialog.IsFolderPicker = true;
+                CommonFileDialogResult result = dialog.ShowDialog();
+
+                string path = dialog.FileName;
+
                 fileService.ExportTasksAsync(context.user.Id, path, format);
 
                 ShowSuccess($"Your tasks successfully exported in {path}\\Tasks.{format}");
