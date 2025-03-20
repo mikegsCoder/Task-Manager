@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using TaskManager.Core.Services.Remark;
-using TaskManager.Core.Services.Task;
 using TaskManager.Core.ViewModels.Remark;
 using TaskManager.Core.ViewModels.Task;
 using TaskManager.WPF.Windows.Remark;

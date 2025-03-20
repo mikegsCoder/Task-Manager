@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using TaskManager.Core.Services.User;
-using TaskManager.Core.ViewModels.User;
 using TaskManager.WPF.DataContexts;
 using static TaskManager.WPF.MessageBoxes.MessageBoxes;
 
