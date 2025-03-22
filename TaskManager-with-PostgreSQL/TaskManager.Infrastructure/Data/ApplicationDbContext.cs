@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Reflection.Emit;
-using System;
 using TaskManager.Infrastructure.Data.Configuration;
 using TaskManager.Infrastructure.Data.Models.DataBaseModels;
 
