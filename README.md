@@ -1,6 +1,6 @@
 # Task-Manager
 
-:dart:  My project for the [Windows Presentation Foundation](https://github.com/mikegsCoder/Self-Education/tree/main/WPF) and [MongoDB with C#](https://github.com/mikegsCoder/Self-Education/tree/main/MongoDB-with-CSharp) courses. This is a desktop application where you can register, login and manage your own tasks. Each task has category, status and collection of remarks. Additionally I implemented this application with SQLite.
+:dart:  My project for the [Windows Presentation Foundation](https://github.com/mikegsCoder/Self-Education/tree/main/WPF) and [MongoDB with C#](https://github.com/mikegsCoder/Self-Education/tree/main/MongoDB-with-CSharp) courses. This is a desktop application where you can register, login and manage your own tasks. Each task has category, status and collection of remarks. Additionally I implemented this application with PostgreSQL and SQLite.
 
 ## :arrow_forward: Getting Started:
 
@@ -41,6 +41,7 @@
 
 - Windows Presentation Foundation
 - Entity Framework Core and MSSQL for TaskManager with MSSQL version
+- Entity Framework Core and PostgreSQL for TaskManager with PostgreSQL version
 - Entity Framework Core and SQLite for TaskManager with SQLite version
 - MongoDbDriver and MongoDB for TaskManager with MongoDB version
 - C#
