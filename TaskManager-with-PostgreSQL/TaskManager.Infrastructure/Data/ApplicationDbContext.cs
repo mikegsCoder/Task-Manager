@@ -6,10 +6,8 @@ namespace TaskManager.Infrastructure.Data
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-                : base(options)
-        {
-        }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {}
 
         public DbSet<User> Users { get; set; }
         public DbSet<UserTask> Tasks { get; set; }
@@ -20,7 +18,7 @@ namespace TaskManager.Infrastructure.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseNpgsql(connectionString:
-               "Server=localhost;Port=5432;User Id=postgres;Password=b0823HB;Database=TaskManager;");
+               "Server=localhost;Port=5432;User Id=postgres;Password=x4680DB3;Database=TaskManager;");
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
