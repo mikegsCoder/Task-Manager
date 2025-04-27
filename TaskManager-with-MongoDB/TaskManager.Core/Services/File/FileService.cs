@@ -7,6 +7,7 @@ using TaskManager.Infrastructure.Data.Models.DataBaseModels;
 using TaskManager.Core.Constants;
 using MongoDB.Bson;
 using TaskManager.Core.DTO;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TaskManager.Core.Services.File
 {
@@ -20,9 +21,9 @@ namespace TaskManager.Core.Services.File
         private IMongoCollection<Category> categoryCollection;
         private IMongoCollection<Remark> remarkCollection;
 
-        public FileService(IMongoClient _client)
+        public FileService(IServiceProvider services)
         {
-            client = _client;
+            client = services.GetRequiredService<IMongoClient>();
 
             db = client.GetDatabase(DatabaseConstants.DatabaseName);
 

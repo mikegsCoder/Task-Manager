@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using TaskManager.Core.Constants;
 using TaskManager.Core.ViewModels.Remark;
@@ -14,9 +15,9 @@ namespace TaskManager.Core.Services.RemarkService
         private IMongoCollection<UserTask> taskCollection;
         private IMongoCollection<Remark> remarkCollection;
 
-        public RemarkService(IMongoClient _client)
+        public RemarkService(IServiceProvider services)
         {
-            client = _client;
+            client = services.GetRequiredService<IMongoClient>();
 
             db = client.GetDatabase(DatabaseConstants.DatabaseName);
 

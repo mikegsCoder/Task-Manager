@@ -1,10 +1,10 @@
 ﻿using System.Text;
 using System.Security.Cryptography;
-
 using MongoDB.Driver;
 using TaskManager.Core.Constants;
 using TaskManager.Infrastructure.Data.Models.DataBaseModels;
 using TaskManager.Core.ViewModels.User;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TaskManager.Core.Services.UserService
 {
@@ -14,9 +14,9 @@ namespace TaskManager.Core.Services.UserService
         private readonly IMongoDatabase db;
         private IMongoCollection<User> userCollection;
 
-        public UserService(IMongoClient _client)
+        public UserService(IServiceProvider services)
         {
-            client = _client;
+            client = services.GetRequiredService<IMongoClient>();
 
             db = client.GetDatabase(DatabaseConstants.DatabaseName);
 

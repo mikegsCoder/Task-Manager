@@ -3,6 +3,7 @@ using TaskManager.Infrastructure.Data.Models.DataBaseModels;
 using MongoDB.Driver;
 using MongoDB.Bson;
 using TaskManager.Core.Constants;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TaskManager.Core.Services.Task
 {
@@ -17,9 +18,9 @@ namespace TaskManager.Core.Services.Task
         private IMongoCollection<Category> categoryCollection;
         private IMongoCollection<Remark> remarkCollection;
 
-        public TaskService(IMongoClient _client)
+        public TaskService(IServiceProvider services)
         {
-            client = _client;
+            client = services.GetRequiredService<IMongoClient>();
 
             db = client.GetDatabase(DatabaseConstants.DatabaseName);
 

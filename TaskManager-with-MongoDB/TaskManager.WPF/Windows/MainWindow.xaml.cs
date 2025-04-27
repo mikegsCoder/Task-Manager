@@ -1,13 +1,11 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using TaskManager.Core.Constants;
-using TaskManager.Core.Services.File;
-using TaskManager.Core.Services.RemarkService;
-using TaskManager.Core.Services.Task;
-using TaskManager.Core.Services.UserService;
 using TaskManager.Core.ViewModels.Task;
 using TaskManager.WPF.Controllers;
 using TaskManager.WPF.DataContexts;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TaskManager.WPF
 {
@@ -21,34 +19,19 @@ namespace TaskManager.WPF
 
         private TaskViewModel selectedTask;
 
-        private readonly IUserService userService;
-        private readonly ITaskService taskService;
-        private readonly IRemarkService remarkService;
-        private readonly IFileService fileService;
-
         public UserController userController;
         public TaskController taskController;
         public RemarkController remarkController;
 
         public MainWindowContext context;
 
-        public MainWindow(
-            IUserService _userService,
-            ITaskService _taskService,
-            IRemarkService _remarkService,
-            IFileService _fileService,
-            MainWindowContext _context)
+        public MainWindow(IServiceProvider services)
         {
-            userService = _userService;
-            taskService = _taskService;
-            remarkService = _remarkService;
-            fileService = _fileService;
+            context = services.GetRequiredService<MainWindowContext>();
 
-            context = _context;
-
-            remarkController = new RemarkController(remarkService);
-            userController = new UserController(userService, context);
-            taskController = new TaskController(taskService, fileService, context);
+            remarkController = services.GetRequiredService<RemarkController>();
+            taskController = services.GetRequiredService<TaskController>();
+            userController = services.GetRequiredService<UserController>();
 
             InitializeComponent();
 
