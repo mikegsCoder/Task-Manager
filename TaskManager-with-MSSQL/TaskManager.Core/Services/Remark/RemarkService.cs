@@ -2,6 +2,7 @@
 using TaskManager.Core.ViewModels.Remark;
 using TaskManager.Infrastructure.Data;
 using TaskManager.Infrastructure.Data.Models.DataBaseModels;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TaskManager.Core.Services.RemarkService
 {
@@ -9,9 +10,9 @@ namespace TaskManager.Core.Services.RemarkService
     {
         private readonly ApplicationDbContext db;
 
-        public RemarkService(ApplicationDbContext _db)
+        public RemarkService(IServiceProvider services)
         {
-            db = _db;
+            db = services.GetRequiredService<ApplicationDbContext>();
         }
 
         public async Task<bool> CreateRemarkAsync(string taskId, string content)

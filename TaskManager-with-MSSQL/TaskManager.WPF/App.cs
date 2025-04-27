@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Windows;
-using TaskManager.Infrastructure.Data;
 
 namespace TaskManager.WPF
 {
@@ -12,9 +8,9 @@ namespace TaskManager.WPF
     {
         readonly MainWindow mainWindow;
 
-        public App(MainWindow _mainWindow)
+        public App(IServiceProvider services)
         {
-            mainWindow = _mainWindow;
+            mainWindow = services.GetRequiredService<MainWindow>();
         }
 
         protected override void OnStartup(StartupEventArgs e)

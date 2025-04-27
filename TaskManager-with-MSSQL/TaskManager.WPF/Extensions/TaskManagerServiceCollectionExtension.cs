@@ -18,7 +18,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<UserController>();
             services.AddScoped<TaskController>();
             services.AddScoped<RemarkController>();
-            services.AddScoped<MainWindowContext>();
+            services.AddSingleton<MainWindowContext>();
             services.AddDbContext<ApplicationDbContext>();
             services.AddScoped(typeof(IUserService), typeof(UserService));
             services.AddScoped(typeof(ITaskService), typeof(TaskService));

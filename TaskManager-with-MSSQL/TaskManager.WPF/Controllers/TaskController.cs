@@ -8,6 +8,7 @@ using Microsoft.WindowsAPICodePack.Dialogs;
 using TaskManager.Core.Constants;
 using TaskManager.WPF.Windows.Task;
 using TaskManager.Core.Services.File;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TaskManager.WPF.Controllers
 {
@@ -17,14 +18,11 @@ namespace TaskManager.WPF.Controllers
         private readonly IFileService fileService;
         private readonly MainWindowContext context;
 
-        public TaskController(
-            ITaskService _taskService,
-            IFileService _fileService,
-            MainWindowContext _context)
+        public TaskController(IServiceProvider services)
         {
-            taskService = _taskService;
-            fileService = _fileService;
-            context = _context;
+            context = services.GetRequiredService<MainWindowContext>(); 
+            fileService = services.GetRequiredService<IFileService>();
+            taskService = services.GetRequiredService<ITaskService>();
         }
 
         public void ExportTasks(string format)

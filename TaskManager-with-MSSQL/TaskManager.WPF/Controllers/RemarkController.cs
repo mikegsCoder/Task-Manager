@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TaskManager.Core.Constants;
@@ -14,9 +15,9 @@ namespace TaskManager.WPF.Controllers
     {
         private readonly IRemarkService remarkService;
 
-        public RemarkController(IRemarkService _remarkService)
+        public RemarkController(IServiceProvider services)
         {
-            remarkService = _remarkService;
+            remarkService = services.GetRequiredService<IRemarkService>();
         }
 
         public async Task<List<RemarkViewModel>> GetRemarksAsync(string taskId)
