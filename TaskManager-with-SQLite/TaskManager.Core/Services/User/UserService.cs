@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 
 using TaskManager.Infrastructure.Data;
 using TaskManager.Core.ViewModels.User;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TaskManager.Core.Services.User
 {
@@ -11,9 +12,9 @@ namespace TaskManager.Core.Services.User
     {
         private readonly ApplicationDbContext db;
 
-        public UserService(ApplicationDbContext _db)
+        public UserService(IServiceProvider services)
         {
-            db = _db;
+            db = services.GetRequiredService<ApplicationDbContext>();
         }
 
         public async void CreateAsync(string username, string password, string firstName, string lastName)

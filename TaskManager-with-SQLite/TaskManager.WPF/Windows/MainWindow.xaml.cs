@@ -1,24 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Diagnostics;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using TaskManager.Core.Services.File;
-using TaskManager.Core.Services.Remark;
-using TaskManager.Core.Services.Task;
-using TaskManager.Core.Services.User;
 using TaskManager.Core.ViewModels.Task;
-using TaskManager.Infrastructure.Data.Models.DataBaseModels;
 using TaskManager.WPF.Controllers;
 using TaskManager.WPF.DataContexts;
 using static TaskManager.WPF.MessageBoxes.MessageBoxes;
@@ -35,34 +19,19 @@ namespace TaskManager.WPF
 
         private TaskViewModel selectedTask;
 
-        private readonly IUserService userService;
-        private readonly ITaskService taskService;
-        private readonly IRemarkService remarkService;
-        private readonly IFileService fileService;
-
         public UserController userController;
-        public RemarkController remarkController;
         public TaskController taskController;
+        public RemarkController remarkController;
 
         public MainWindowContext context;
 
-        public MainWindow(
-            IUserService _userService,
-            ITaskService _taskService,
-            IRemarkService _remarkService,
-            IFileService _fileService,
-            MainWindowContext _context)
+        public MainWindow(IServiceProvider services)
         {
-            userService = _userService;
-            taskService = _taskService;
-            remarkService = _remarkService;
-            fileService = _fileService;
+            context = services.GetRequiredService<MainWindowContext>();
 
-            context = _context;
-
-            remarkController = new RemarkController(remarkService);
-            taskController = new TaskController(taskService, fileService, context);
-            userController = new UserController(userService, context);
+            remarkController = services.GetRequiredService<RemarkController>();
+            taskController = services.GetRequiredService<TaskController>();
+            userController = services.GetRequiredService<UserController>();
 
             InitializeComponent();
 

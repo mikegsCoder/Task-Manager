@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using TaskManager.Core.ViewModels.Task;
 using TaskManager.Infrastructure.Data;
 using TaskManager.Infrastructure.Data.Models.DataBaseModels;
@@ -9,9 +10,9 @@ namespace TaskManager.Core.Services.Task
     {
         private readonly ApplicationDbContext db;
 
-        public TaskService(ApplicationDbContext _db)
+        public TaskService(IServiceProvider services)
         {
-            db = _db;
+            db = services.GetRequiredService<ApplicationDbContext>();
         }
 
         public async Task<bool> CreateTaskAsync(string userId, string description, string category)

@@ -7,6 +7,7 @@ using TaskManager.WPF.DataContexts;
 using TaskManager.WPF.Windows.Task;
 using static TaskManager.WPF.MessageBoxes.MessageBoxes;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TaskManager.WPF.Controllers
 {
@@ -16,14 +17,11 @@ namespace TaskManager.WPF.Controllers
         private readonly IFileService fileService;
         private readonly MainWindowContext context;
 
-        public TaskController(
-            ITaskService _taskService,
-            IFileService _fileService,
-            MainWindowContext _context)
+        public TaskController(IServiceProvider services)
         {
-            taskService = _taskService;
-            fileService = _fileService;
-            context = _context;
+            context = services.GetRequiredService<MainWindowContext>();
+            fileService = services.GetRequiredService<IFileService>();
+            taskService = services.GetRequiredService<ITaskService>();
         }
 
         public async Task GetTasksAsync(string categorySelector, string statusSelector)

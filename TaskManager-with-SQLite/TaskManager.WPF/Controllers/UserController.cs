@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,12 +14,10 @@ namespace TaskManager.WPF.Controllers
         private readonly MainWindowContext context;
         private readonly IUserService userService;
 
-        public UserController(
-            IUserService _userService,
-            MainWindowContext _context)
+        public UserController(IServiceProvider services)
         {
-            userService = _userService;
-            context = _context;
+            userService = services.GetRequiredService<IUserService>();
+            context = services.GetRequiredService<MainWindowContext>();
         }
 
         public async void RegisterAsync()

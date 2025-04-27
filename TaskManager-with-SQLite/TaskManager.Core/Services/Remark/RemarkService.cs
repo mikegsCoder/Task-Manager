@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using TaskManager.Core.ViewModels.Remark;
 using TaskManager.Infrastructure.Data;
 
@@ -8,9 +9,9 @@ namespace TaskManager.Core.Services.Remark
     {
         private readonly ApplicationDbContext db;
 
-        public RemarkService(ApplicationDbContext _db)
+        public RemarkService(IServiceProvider services)
         {
-            db = _db;
+            db = services.GetRequiredService<ApplicationDbContext>();
         }
 
         public async Task<bool> CreateRemarkAsync(string taskId, string content)

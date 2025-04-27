@@ -6,6 +6,7 @@ using System.Xml;
 using TaskManager.Core.DTO;
 using TaskManager.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TaskManager.Core.Services.File
 {
@@ -13,9 +14,9 @@ namespace TaskManager.Core.Services.File
     {
         private readonly ApplicationDbContext db;
 
-        public FileService(ApplicationDbContext _db)
+        public FileService(IServiceProvider services)
         {
-            db = _db;
+            db = services.GetRequiredService<ApplicationDbContext>();
         }
 
         public async void ExportTasksAsync(string userId, string path, string format)
